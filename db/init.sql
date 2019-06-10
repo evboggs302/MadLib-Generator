@@ -21,7 +21,7 @@ select * from users;
 
 --
 
-create table templates (
+create table library (
     user_id int references users(user_id),
     story_id serial primary key,
     title varchar(100),
@@ -29,7 +29,7 @@ create table templates (
     lines text[]
 );
 
-insert into templates (title, blanks, lines)
+insert into library (title, blanks, lines)
 values
 ('How To Cross a Piranha-Infested River', ARRAY ['foreign country',
       'adverb',
@@ -174,7 +174,7 @@ values
       ' it over.''"''',
       '0']);
 
-select * from templates;
+select * from library;
 
 --
 
