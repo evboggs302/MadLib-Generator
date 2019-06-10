@@ -3,9 +3,15 @@ import Header from "./Components/Header/Header";
 import Home from "./Components/Home/Home";
 import Shop from "./Components/Shop/Shop";
 import Cart from "./Components/Shop/Cart";
+// import Library from "./Components/Library/Library";
+import Reqs from "./Components/Reqs/Reqs";
+// import Community from "./Components/Community/Community";
 import Register from "./Components/Auth/Register/Register";
-import { Switch, Route, NavLink } from "react-router-dom";
+// import Create from "./Components/Create/Create";
+// import History from "./Components/History/History";
+import CatchAll from "./Components/CatchAll/CatchAll";
 
+import { Switch, Route, NavLink } from "react-router-dom";
 import "./App.css";
 
 function App() {
@@ -23,8 +29,13 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/shop" component={Shop} />
         <Route path="/shopping/cart" component={Cart} />
-        {/* <Route path='/library'/> */}
+        <Route path="/reqs" component={Reqs} />
+        {/* <Route path="/create" component={Create} /> */}
+        {/* <Route path="/history" component={History} /> */}
+        {/* <Route path="/library" component={Library} /> */}
+        {/* <Route path="/community" component={Community} /> */}
         <Route path="/register" component={Register} />
+        <Route path="*" componen={CatchAll} />
       </Switch>
     </div>
   );

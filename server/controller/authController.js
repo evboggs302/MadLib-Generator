@@ -5,7 +5,7 @@ module.exports = {
   login: (req, res, next) => {
     const { username, password } = req.body;
     const db = req.app.get("db");
-    db.check_if_user_exists(username).then(found => {
+    db.check_existing_users(username).then(found => {
       if (!found[0]) {
         res.status(200).send("Incorrect username/password");
       } else {
@@ -22,18 +22,20 @@ module.exports = {
     });
   },
   register: (req, res, next) => {
-    const { username, email, password } = req.body;
+    const { name, username, email, password } = req.body;
     const db = req.app.get("db");
-    db.check_if_user_exists(username).then(found => {
+    db.check_existing_users(username).then(found => {
       if (found.length) {
         res.status(500).send("Email already exists!");
       } else {
         bcrypt.genSalt(saltRounds).then(salt => {
           bcrypt.hash(password, salt).then(hashedPassword => {
-            db.register([username, email, hashedPassword]).then(createdUser => {
-              (req.session.user = createdUser[0]),
-                res.status(200).send(req.session.user);
-            });
+            db.register([name, username, email, hashedPassword]).then(
+              createdUser => {
+                (req.session.user = createdUser[0]),
+                  res.status(200).send(req.session.user);
+              }
+            );
           });
         });
       }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setUser } from "../../../ducks/reducer";
+import { setUser } from "../../../ducks/UserReducer";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import "./Register.css";
@@ -35,7 +35,7 @@ class Register extends Component {
     console.log(this.props);
     console.log(this.state);
     const { name, username, password, email } = this.state;
-    const { user } = this.props;
+    // const { user } = this.props;
     return (
       <div>
         <div>

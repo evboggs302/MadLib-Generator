@@ -1,5 +1,14 @@
 module.exports = {
-  saveStory: (req, res, next) => {},
-  sortTitle: (res, req, next) => {},
-  sortDate: (res, req, next) => {}
+  saveStory: (req, res, next) => {
+    const {} = req.body;
+    const db = req.app.get("db");
+  },
+  sortTitle: (res, req, next) => {
+    const {} = req.body;
+    const db = req.app.get("db");
+  },
+  sortDate: (res, req, next) => {
+    const {} = req.body;
+    const db = req.app.get("db");
+  }
 };

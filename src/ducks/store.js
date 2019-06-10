@@ -1,6 +1,7 @@
-import { createStore } from "redux";
-import reducer from "./reducer";
+import { createStore, combineReducers } from "redux";
+import UserReducer from "./UserReducer";
+import StoryReducer from "./StoryReducer";
 
-//use combinedRecuder for when you have multiple reducers with diff states
+const rootReducer = combineReducers({ user: UserReducer, story: StoryReducer });
 
-export default createStore(reducer);
+export default createStore(rootReducer);
