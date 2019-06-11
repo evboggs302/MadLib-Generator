@@ -1,5 +1,5 @@
 drop table if exists shop;
-drop table if exists templates;
+drop table if exists library;
 drop table if exists history;
 drop table if exists users;
 
@@ -83,8 +83,8 @@ values
       'noun',
       'past tense verb'
     ], ARRAY ['Once up a time, there were three ',
-      ' pigs. One day, their mother said, ''"''You are all grown up and must ',
-      ' on your own.''"'' So they left to ',
+      ' pigs. One day, their mother said,  "You are all grown up and must ',
+      ' on your own." So they left to ',
       ' their houses. The first little pig wanted only to ',
       ' all day and quickly built his house out of ',
       '. The second little pig wanted to ',
@@ -95,14 +95,14 @@ values
       ' pig knew the wolf lived nearby and worked hard to ',
       ' his house out of ',
       '. One day, the wolf knocked on the first pig''s ',
-      '. ''"''Let me in or I''ll ',
-      ' your house down!''"'' The pig didn''t, so the wolf ',
+      '. "Let me in or I''ll ',
+      ' your house down!" The pig didn''t, so the wolf ',
       ' down the ',
       '. The wolf knocked on the second pig''s ',
-      '. ''"''Let me in or I''ll blow your ',
-      ' down!''"'' The pig didn''t, so the wolf ',
+      '. "Let me in or I''ll blow your ',
+      ' down!" The pig didn''t, so the wolf ',
       ' down the house. Then the wolf knocked on the third ',
-      ' pig''s door. ''"''Let me in or I''ll blow your house down!''"'' The little pig didn''t so the wolf ',
+      ' pig''s door. "Let me in or I''ll blow your house down!" The little pig didn''t so the wolf ',
       ' and ',
       '. He couldn''t blow the house down. All the pigs went to live in the ',
       ' house and they all ',
@@ -127,10 +127,10 @@ values
       ' like a pirate, ye''ll never be ',
       ' accepted as an authentic ',
       '. So here''s what ye do: Cleverly work into yer daily conversations ',
-      ' pirate phrases such as ''"''Ahoy there, ',
-      ',''"'' ''"''Avast, ye ',
-      ',''"'' and ''"''Shiver me ',
-      '.''"'' Remember to drop all yer g''s when ye say such words as sailin'', spittin'', and fightin''. This will give ye a/an ',
+      ' pirate phrases such as "Ahoy there, ',
+      '," or "Avast, ye ',
+      '," and "Shiver me ',
+      '." Remember to drop all yer g''s when ye say such words as sailin'', spittin'', and fightin''. This will give ye a/an ',
       ' start to being recognized as a swashbucklin'' ',
       '. Once ye have the lingo down pat, it helps to wear a three-cornered ',
       ' on yer head, stash a/an ',
@@ -170,8 +170,8 @@ values
       ' from ',
       ', just play it ',
       '. Take a long pause before answering in a very ',
-      ' voice. ''"''I''ll have to ',
-      ' it over.''"''',
+      ' voice. "I''ll have to ',
+      ' it over."',
       '0']);
 
 select * from library;
