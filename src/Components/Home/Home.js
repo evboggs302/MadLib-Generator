@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { setStory } from "../../ducks/StoryReducer";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import "./Home.css";
 
 class Home extends Component {
@@ -13,9 +14,7 @@ class Home extends Component {
   }
   setRedirect = () => {
     this.setState({
-      redirect: true,
-      reqs: [],
-      template: []
+      redirect: true
     });
   };
   renderRedirect = () => {
@@ -25,19 +24,18 @@ class Home extends Component {
   };
 
   getRandomTemplate = () => {
-    console.log("rando temp func hit");
     const id = Math.floor(Math.random() * 4) + 1;
     axios.get(`/api/library/random/${id}`).then(res => {
-      console.log(res);
-      // this.setState({
-      //   req
-      // });
+      console.log(res.data);
+      this.props.setStory(res.data);
     });
+    this.setRedirect();
   };
 
   render() {
-    console.log(this.props);
-    const { user } = this.props;
+    console.log(this.props.user);
+    console.log(this.props.story);
+    const { user } = this.props.user;
     return (
       <div>
         {!user ? (
@@ -46,12 +44,7 @@ class Home extends Component {
             <p />
             <div>
               {this.renderRedirect()}
-              <button
-                onClick={this.setRedirect}
-                onClick={this.getRandomTemplate}
-              >
-                Random
-              </button>
+              <button onClick={this.getRandomTemplate}>Random</button>
             </div>
           </div>
         ) : (
@@ -79,12 +72,12 @@ const mapStateToProps = reduxState => {
   return reduxState;
 };
 
-//   const mapDispatchToProps = {
-//     setUser
-//   };
+const mapDispatchToProps = {
+  setStory
+};
 
 const invokedConnect = connect(
-  mapStateToProps
-  // mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 );
 export default invokedConnect(Home);

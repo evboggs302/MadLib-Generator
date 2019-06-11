@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
+import { setFinal, fillBlanks } from "../../ducks/StoryReducer";
 import axios from "axios";
 import "./Reqs.css";
 
@@ -8,43 +9,61 @@ class Reqs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false
+      redirect: false,
+      blanks: []
     };
   }
   setRedirect = () => {
     this.setState({
-      redirect: true,
-      reqs: [],
-      template: []
+      redirect: true
     });
   };
+
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to="/reqs" />;
+      return <Redirect to="/story" />;
     }
   };
 
-  render() {
-    console.log(this.props);
-    // let mappedInputs =
-    //   arr && arr.length
-    //     ? arr.map((element, index) => {
-    //         return (
-    //           <div className="layout" key={index}>
-    //             <input
-    //               placeholder={element}
-    //               onChange={event => this.changeHandler(event, index)}
-    //             />
-    //           </div>
-    //         );
-    //       })
-    //     : [];
+  changeHandler(event, index) {
+    const { blanks } = this.state;
+    blanks[index] = [event.target.value];
+    this.setState({
+      blanks: blanks
+    });
+  }
 
+  render() {
+    console.log(this.props.story);
+    const { title, blanks } = this.props.story;
+    let arr = blanks;
+    console.log(arr);
+    let mappedInputs =
+      arr && arr.length
+        ? arr.map((element, index) => {
+            return (
+              <div className="layout" key={index}>
+                <input
+                  placeholder={element}
+                  onChange={event => this.changeHandler(event, index)}
+                />
+              </div>
+            );
+          })
+        : arr;
+    console.log(this.props.story.blanks);
     return (
       <div className="inputs">
-        <h3 className="wordsBruh">Words, Bruh. WORDS!</h3>
-        {/* {mappedInputs} */}
+        <h3 className="wordsBruh">{title}</h3>
+        {mappedInputs}
         <br />
+
+        <button
+          className="createButton"
+          onClick={() => this.props.fillBlanks(this.state.blanks)}
+        >
+          <NavLink to="/story">Create Story</NavLink>
+        </button>
       </div>
     );
   }
@@ -53,8 +72,12 @@ class Reqs extends Component {
 const mapStateToProps = reduxState => {
   return reduxState;
 };
+const mapDispatchToProps = {
+  setFinal,
+  fillBlanks
+};
 const invokedConnect = connect(
-  mapStateToProps
-  // mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 );
 export default invokedConnect(Reqs);

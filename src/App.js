@@ -5,6 +5,7 @@ import Shop from "./Components/Shop/Shop";
 import Cart from "./Components/Shop/Cart";
 // import Library from "./Components/Library/Library";
 import Reqs from "./Components/Reqs/Reqs";
+import Story from "./Components/FinalStory/FinalStory";
 // import Community from "./Components/Community/Community";
 import Register from "./Components/Auth/Register/Register";
 // import Create from "./Components/Create/Create";
@@ -34,6 +35,7 @@ function App() {
         {/* <Route path="/history" component={History} /> */}
         {/* <Route path="/library" component={Library} /> */}
         {/* <Route path="/community" component={Community} /> */}
+        <Route path="/story" component={Story} />
         <Route path="/register" component={Register} />
         <Route path="*" componen={CatchAll} />
       </Switch>
