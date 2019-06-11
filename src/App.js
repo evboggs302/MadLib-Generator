@@ -3,7 +3,7 @@ import Header from "./Components/Header/Header";
 import Home from "./Components/Home/Home";
 import Shop from "./Components/Shop/Shop";
 import Cart from "./Components/Shop/Cart";
-// import Library from "./Components/Library/Library";
+import Library from "./Components/Library/Library";
 import Reqs from "./Components/Reqs/Reqs";
 import Story from "./Components/FinalStory/FinalStory";
 // import Community from "./Components/Community/Community";
@@ -33,7 +33,7 @@ function App() {
         <Route path="/reqs" component={Reqs} />
         {/* <Route path="/create" component={Create} /> */}
         {/* <Route path="/history" component={History} /> */}
-        {/* <Route path="/library" component={Library} /> */}
+        <Route path="/library" component={Library} />
         {/* <Route path="/community" component={Community} /> */}
         <Route path="/story" component={Story} />
         <Route path="/register" component={Register} />

@@ -11,8 +11,8 @@ module.exports = {
       } else {
         bcrypt.compare(password, found[0].password).then(matched => {
           if (matched) {
-            const { username, email, user_id } = found[0];
-            req.session.user = { username, email, user_id };
+            const { username, email, user_id, call_name } = found[0];
+            req.session.user = { username, email, user_id, call_name };
             res.status(200).send(req.session.user);
           } else {
             res.status(500).send("Incorrect username/password");

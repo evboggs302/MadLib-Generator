@@ -67,9 +67,9 @@ app.put("/api/history/title", sortTitle);
 app.put("/api/history/date", sortDate);
 
 // library EndPoints
-app.get("/api/library", getFullLibrary);
+app.get("/api/library/", getFullLibrary);
 app.get("/api/library/random/:id", getRandom);
-app.get("/api/library/:id", getSingleTemplate);
+app.get("/api/library/single/:id", getSingleTemplate);
 app.post("/api/library", saveTemplate);
 app.delete("/api/library/:story_id", deleteTemplate);
 

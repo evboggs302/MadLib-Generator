@@ -40,8 +40,15 @@ class Home extends Component {
       <div>
         {!user ? (
           <div>
-            <h2 />
-            <p />
+            <h2>Words, Bruh. Words!!</h2>
+            <p>
+              {" "}
+              Welcome to the place where the words are made up, and the stories
+              don't matter. If you'd like to ejoy, and possibly create, more
+              labs on this site, please login above. If you don't want to login,
+              I understand. I too like to live life on the edge on ocassion.
+              Simply click the "Random" button below to get started.
+            </p>
             <div>
               {this.renderRedirect()}
               <button onClick={this.getRandomTemplate}>Random</button>
@@ -49,6 +56,19 @@ class Home extends Component {
           </div>
         ) : (
           <div>
+            <h2>Words, {user.call_name}. Words!!</h2>
+            <p>
+              {" "}
+              Welcome back to the place where the words are made up, and the
+              stories don't matter! If you'd like to ejoy already created Mad
+              Libs, click the below button to go to the "Library." If you'd like
+              to create your own Mad Lib, click "Create." Want to see the saved
+              stories you've previously completed? Click "History". If you don't
+              feel like creating anything, but still want to laugh, hop on over
+              to our "Community" page. You'll be able to see all the shenanigans
+              others have been up to. If you're just feeling lucky, simply click
+              "Random" to get started!
+            </p>
             <div>
               {this.renderRedirect()}
               <button
@@ -57,11 +77,19 @@ class Home extends Component {
               >
                 Random
               </button>
+              <button>
+                <NavLink to="/library">Library</NavLink>
+              </button>
+              <button>
+                <NavLink to="/create">Create</NavLink>
+              </button>
+              <button>
+                <NavLink to="/history">History</NavLink>
+              </button>
+              <button>
+                <NavLink to="/community">Community</NavLink>
+              </button>
             </div>
-            {/* <NavLink />
-            <NavLink />
-            <NavLink />
-            <NavLink /> */}
           </div>
         )}
       </div>

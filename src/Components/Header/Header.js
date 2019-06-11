@@ -80,7 +80,7 @@ class Header extends Component {
           </div>
         ) : (
           <div>
-            <div>{JSON.stringify(user.username)}</div>
+            <div>{user.username}</div>
             <button onClick={this.logout}>Logout</button>
           </div>
         )}
