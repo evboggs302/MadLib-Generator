@@ -84,7 +84,7 @@ app.get("/api/shop/:prod_id", updateQuant);
 
 //external API's
 
-// app.get('https://randomuser.me/api/portraits/med/lego/:id');
+// app.get('https://randomuser.me/api/portraits/med/lego/:id', profilePicToSession);
 //  id = Math.floor(Math.random() * 10) + 1}.jpg
 
 // app.get(

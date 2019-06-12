@@ -40,8 +40,6 @@ class Header extends Component {
   };
 
   render() {
-    console.log(this.props);
-    console.log(this.state);
     const { username, password } = this.state;
     const { user } = this.props.user;
     return (

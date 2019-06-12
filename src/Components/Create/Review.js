@@ -12,22 +12,24 @@ class Review extends Component {
     };
   }
   render() {
-    console.log(this.props);
+    console.log("state:", this.state);
+    console.log("store:", this.props.creation);
     return <div>Review Component</div>;
   }
 }
+
 const mapStateToProps = reduxState => {
   return reduxState;
 };
 
-const mapDispatchToProps = {
-  setGiven,
-  setLines,
-  setSelected
-};
+// const mapDispatchToProps = {
+//   setGiven,
+//   setLines,
+//   setSelected
+// };
 
 const invokedConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
+  //   mapDispatchToProps
 );
 export default invokedConnect(Review);

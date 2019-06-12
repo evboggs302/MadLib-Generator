@@ -1,3 +1,3 @@
 module.exports = {
-  getProfilePic: (req, res, next) => {}
+  profilePicToSession: (req, res, next) => {}
 };

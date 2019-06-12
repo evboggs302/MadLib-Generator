@@ -8,7 +8,7 @@ import {
   setTitle
 } from "../../ducks/CreationReducer";
 import axios from "axios";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class CreateSelect extends Component {
   constructor(props) {
@@ -21,6 +21,56 @@ class CreateSelect extends Component {
     };
   }
 
+  saveTemplate = () => {
+    const { given } = this.props.creation;
+    const { wordBlanks } = this.state;
+    const givenSplit = given.split(" ");
+    let tempLines = [];
+
+    let previBlank = -1;
+    for (let i = 0; i < wordBlanks.length; i++) {
+      let index = wordBlanks[i][1];
+      let parrot = givenSplit.slice(previBlank + 1, index);
+      tempLines.push(parrot);
+      previBlank = index;
+    }
+
+    this.setState({});
+    this.props.setLines(this.state.lines);
+  };
+
+  saveBlanks = ([type, index]) => {
+    const { wordBlanks } = this.state;
+    if (wordBlanks.length === 0) {
+      let copy = this.state.wordBlanks.slice();
+      copy.push([type, index]);
+      this.setState({
+        wordBlanks: copy
+      });
+      const { wordBlanks } = this.state;
+      this.props.setBlanks(wordBlanks);
+    } else if (wordBlanks.length) {
+      const { wordBlanks } = this.state;
+      for (let i = 0; i < wordBlanks.length; i++) {
+        if (wordBlanks[i][1] === index) {
+          let parrot = this.state.wordBlanks.slice();
+          parrot.splice(i, 1, [type, index]);
+          this.setState({
+            wordBlanks: parrot
+          });
+          this.props.setBlanks(this.state.wordBlanks);
+        } else {
+          let echo = this.state.wordBlanks.slice();
+          echo.push([type, index]);
+          this.setState({
+            wordBlanks: echo
+          });
+          this.props.setBlanks(this.state.wordBlanks);
+        }
+      }
+    }
+  };
+
   changeTitle = event => {
     this.setState({
       createdTitle: event.target.value
@@ -30,9 +80,7 @@ class CreateSelect extends Component {
 
   getWordInfo = EventTarget => {
     const index = +EventTarget.key;
-    console.log(index);
     const word = EventTarget.props.children.props.children;
-    console.log(word);
     const wordInfo = [word, index];
 
     axios
@@ -40,20 +88,20 @@ class CreateSelect extends Component {
         `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=68c81f9b-028f-4b22-82ae-8ee40ce43404`
       )
       .then(res => {
-        console.log("response from api", res.data);
         let arr = res.data;
         let types = [];
         for (let i = 0; i < arr.length; i++) {
           types.push(arr[i].fl);
         }
         const uniqueVals = new Set(types);
-        const partsOfSpeech = [...uniqueVals];
+        const partsOfSpeech = ["", ...uniqueVals];
         this.setState({
           selectedWordInfo: [
             ...this.state.selectedWordInfo,
             { word: wordInfo, type: partsOfSpeech }
           ]
         });
+        this.props.setSelected(this.state.selectedWordInfo);
       });
   };
 
@@ -64,6 +112,7 @@ class CreateSelect extends Component {
       finalWordSelection: [],
       lines: []
     });
+    this.props.setSelected([]);
   };
 
   render() {
@@ -71,7 +120,7 @@ class CreateSelect extends Component {
       border: none;
       background: none;
     `;
-    console.log(this.state);
+
     const { given } = this.props.creation;
     const mappedCreation = given.split(" ").map((e, index) => {
       return (
@@ -86,16 +135,22 @@ class CreateSelect extends Component {
       );
     });
     const { selectedWordInfo } = this.state;
-
-    console.log("this is wordInfo", selectedWordInfo);
-    const menu = selectedWordInfo.map((e, index) => {
+    const menu = selectedWordInfo.map((e, indexOfOriginal) => {
       return (
-        <div key={index}>
+        <div key={indexOfOriginal + 1}>
           {" "}
           {e.word[0]}
-          <select>
+          <select
+            onChange={event => {
+              this.saveBlanks([event.target.value, e.word[1]]);
+            }}
+          >
             {e.type.map((type, index) => {
-              return <option key={index + 1}>{type}</option>;
+              return (
+                <option key={index} value={type}>
+                  {type}
+                </option>
+              );
             })}
           </select>
         </div>
@@ -120,11 +175,15 @@ class CreateSelect extends Component {
         </span>
         {!selectedWordInfo.length ? (
           <div />
+        ) : !this.props.creation.blanks.length ? (
+          <div>
+            <button onClick={this.clearSelectedWords}>Clear Selected</button>
+          </div>
         ) : (
           <div>
             <button onClick={this.clearSelectedWords}>Clear Selected</button>
             <NavLink to="/review">
-              <button>Continue to Review</button>
+              <button onClick={this.saveTemplate}>Continue to Review</button>
             </NavLink>
           </div>
         )}
