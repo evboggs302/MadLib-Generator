@@ -70,13 +70,9 @@ class Home extends Component {
               "Random" to get started!
             </p>
             <div>
-              {this.renderRedirect()}
-              <button
-                onClick={this.setRedirect}
-                onClick={this.getRandomTemplate}
-              >
-                Random
-              </button>
+              <NavLink to="/reqs">
+                <button onClick={this.getRandomTemplate}>Random</button>
+              </NavLink>
 
               <NavLink to="/library">
                 <button>Library</button>

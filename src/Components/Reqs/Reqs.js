@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { setFinal, fillBlanks } from "../../ducks/StoryReducer";
-import axios from "axios";
 import "./Reqs.css";
 
 class Reqs extends Component {

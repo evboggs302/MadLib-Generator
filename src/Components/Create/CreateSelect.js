@@ -28,7 +28,6 @@ class CreateSelect extends Component {
 
     let previBlank = -1;
     for (let i = 0; i < wordBlanks.length; i++) {
-      console.log("loop hit. templines:", tempLines);
       let index = wordBlanks[i][1];
       let parrot = givenSplit.slice(previBlank + 1, index).join(" ");
       tempLines.push([parrot]);
@@ -39,7 +38,6 @@ class CreateSelect extends Component {
       .join(" ");
     tempLines.push([echo]);
 
-    console.log("tempLines:", tempLines);
     this.props.setLines(tempLines);
     this.setState({
       lines: tempLines
@@ -51,28 +49,27 @@ class CreateSelect extends Component {
     if (wordBlanks.length === 0) {
       let copy = this.state.wordBlanks.slice();
       copy.push([type, index]);
+      this.props.setBlanks(copy);
       this.setState({
         wordBlanks: copy
       });
-      const { wordBlanks } = this.state;
-      this.props.setBlanks(wordBlanks);
     } else if (wordBlanks.length) {
       const { wordBlanks } = this.state;
       for (let i = 0; i < wordBlanks.length; i++) {
         if (wordBlanks[i][1] === index) {
           let parrot = this.state.wordBlanks.slice();
           parrot.splice(i, 1, [type, index]);
+          this.props.setBlanks(this.state.wordBlanks);
           this.setState({
             wordBlanks: parrot
           });
-          this.props.setBlanks(this.state.wordBlanks);
         } else {
           let echo = this.state.wordBlanks.slice();
           echo.push([type, index]);
+          this.props.setBlanks(echo);
           this.setState({
             wordBlanks: echo
           });
-          this.props.setBlanks(this.state.wordBlanks);
         }
       }
     }

@@ -81,7 +81,9 @@ class Register extends Component {
           />
         </div>
         <div>
-          <button onClick={this.register}>Register</button>
+          <NavLink to="/">
+            <button onClick={this.register}>Register</button>
+          </NavLink>
         </div>
       </div>
     );

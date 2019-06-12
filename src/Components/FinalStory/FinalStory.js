@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setFinal, fillBlanks } from "../../ducks/StoryReducer";
+import { setFinal } from "../../ducks/StoryReducer";
 
 class Story extends Component {
   componentDidMount() {
@@ -24,9 +24,23 @@ class Story extends Component {
   render() {
     console.log(this.props.story);
     const { story } = this.props;
+    const { user } = this.props.user;
     return (
       <div>
         <p>{story.final}</p>
+        <br />
+        <div>
+          <button>Text</button>
+          <button>Email</button>
+          {!user ? (
+            []
+          ) : (
+            <div>
+              <button>Save</button>
+              <button>{`Save & Share`}</button>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

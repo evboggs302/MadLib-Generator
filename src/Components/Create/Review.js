@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { setGiven, setSelected, setLines } from "../../ducks/CreationReducer";
-import axios from "axios";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class Review extends Component {
   constructor(props) {

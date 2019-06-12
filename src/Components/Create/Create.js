@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setGiven } from "../../ducks/CreationReducer";
-import axios from "axios";
 import { Redirect } from "react-router-dom";
 
 class Create extends Component {
@@ -52,10 +51,14 @@ class Create extends Component {
           placeholder="Start typing your story here"
           onChange={event => this.changeHandler(event)}
         />
-        <div>
-          {this.renderRedirect()}
-          <button onClick={this.setRedirect}>Next</button>
-        </div>
+        {!this.state.typed ? (
+          []
+        ) : (
+          <div>
+            {this.renderRedirect()}
+            <button onClick={this.setRedirect}>Next</button>
+          </div>
+        )}
       </div>
     );
   }
