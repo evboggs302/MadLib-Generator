@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setGiven, setSelected, setLines } from "../../ducks/CreationReducer";
+// import { setGiven, setSelected, setLines } from "../../ducks/CreationReducer";
 import axios from "axios";
 import { NavLink, Redirect } from "react-router-dom";
 
 class Review extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      redirect: false
-    };
+    this.state = {};
   }
   render() {
     console.log("state:", this.state);

@@ -14,7 +14,6 @@ class CreateSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createdTitle: "",
       selectedWordInfo: [],
       wordBlanks: [],
       lines: []
@@ -29,14 +28,22 @@ class CreateSelect extends Component {
 
     let previBlank = -1;
     for (let i = 0; i < wordBlanks.length; i++) {
+      console.log("loop hit. templines:", tempLines);
       let index = wordBlanks[i][1];
-      let parrot = givenSplit.slice(previBlank + 1, index);
-      tempLines.push(parrot);
+      let parrot = givenSplit.slice(previBlank + 1, index).join(" ");
+      tempLines.push([parrot]);
       previBlank = index;
     }
+    let echo = givenSplit
+      .slice(previBlank + 1, givenSplit.length + 1)
+      .join(" ");
+    tempLines.push([echo]);
 
-    this.setState({});
-    this.props.setLines(this.state.lines);
+    console.log("tempLines:", tempLines);
+    this.props.setLines(tempLines);
+    this.setState({
+      lines: tempLines
+    });
   };
 
   saveBlanks = ([type, index]) => {
@@ -72,10 +79,7 @@ class CreateSelect extends Component {
   };
 
   changeTitle = event => {
-    this.setState({
-      createdTitle: event.target.value
-    });
-    this.props.setTitle();
+    this.props.setTitle(event.target.value);
   };
 
   getWordInfo = EventTarget => {
@@ -156,6 +160,8 @@ class CreateSelect extends Component {
         </div>
       );
     });
+    console.log("state:", this.state);
+    console.log("store:", this.props.creation);
 
     return (
       <div>
