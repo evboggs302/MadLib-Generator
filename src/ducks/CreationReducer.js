@@ -1,10 +1,12 @@
 const initialState = {
   given: "",
   selected: [],
+  blanks: [],
   lines: []
 };
 const SET_GIVEN = "SET_GIVEN";
 const SET_SELECTED = "SET_SELECTED";
+const SET_BLANKS = "SET_BLANKS";
 const SET_LINES = "SET_LINES";
 
 export default function CreationReducer(state = initialState, action) {
@@ -18,6 +20,11 @@ export default function CreationReducer(state = initialState, action) {
       return {
         ...state,
         selected: action.payload
+      };
+    case SET_BLANKS:
+      return {
+        ...state,
+        blanks: action.payload
       };
     case SET_LINES:
       return {
@@ -37,6 +44,12 @@ export function setGiven(typedInput) {
 export function setSelected(words) {
   return {
     type: SET_SELECTED,
+    payload: words
+  };
+}
+export function setBlanks(words) {
+  return {
+    type: SET_BLANKS,
     payload: words
   };
 }

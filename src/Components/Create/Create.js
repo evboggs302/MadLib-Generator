@@ -38,7 +38,7 @@ class Create extends Component {
         <h2>Create Your Own Story</h2>
         <p>
           In the box provided below, type out a paragraph that is no more than
-          500 characters long. Don't try to be funny just yet. We'll get to the
+          1000 characters long. Don't try to be funny just yet. We'll get to the
           funny-business in a little bit.
         </p>
         {/* "Hey man!" They were shocked! */}
@@ -48,7 +48,7 @@ class Create extends Component {
           cols="60"
           wrap="hard"
           required
-          maxLength="500"
+          maxLength="1000"
           placeholder="Start typing your story here"
           onChange={event => this.changeHandler(event)}
         />

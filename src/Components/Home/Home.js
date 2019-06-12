@@ -60,7 +60,7 @@ class Home extends Component {
             <p>
               {" "}
               Welcome back to the place where the words are made up, and the
-              stories don't matter! If you'd like to ejoy already created Mad
+              stories don't matter! If you'd like to enjoy already created Mad
               Libs, click the below button to go to the "Library." If you'd like
               to create your own Mad Lib, click "Create." Want to see the saved
               stories you've previously completed? Click "History". If you don't
@@ -77,18 +77,22 @@ class Home extends Component {
               >
                 Random
               </button>
-              <button>
-                <NavLink to="/library">Library</NavLink>
-              </button>
-              <button>
-                <NavLink to="/create">Create</NavLink>
-              </button>
-              <button>
-                <NavLink to="/history">History</NavLink>
-              </button>
-              <button>
-                <NavLink to="/community">Community</NavLink>
-              </button>
+
+              <NavLink to="/library">
+                <button>Library</button>
+              </NavLink>
+
+              <NavLink to="/create">
+                <button>Create</button>
+              </NavLink>
+
+              <NavLink to="/history">
+                <button>History</button>
+              </NavLink>
+
+              <NavLink to="/community">
+                <button>Community</button>
+              </NavLink>
             </div>
           </div>
         )}
