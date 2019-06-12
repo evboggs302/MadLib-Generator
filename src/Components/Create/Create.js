@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setGiven, setSelected, setLines } from "../../ducks/CreationReducer";
+import { setGiven } from "../../ducks/CreationReducer";
 import axios from "axios";
-import { NavLink, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class Create extends Component {
   constructor(props) {
@@ -16,10 +16,11 @@ class Create extends Component {
     this.setState({
       redirect: true
     });
+    this.props.setGiven(this.state.typed);
   };
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to="/create/select" />;
+      return <Redirect to="/createselect" />;
     }
   };
 
@@ -34,41 +35,41 @@ class Create extends Component {
   render() {
     return (
       <div>
+        <h2>Create Your Own Story</h2>
+        <p>
+          In the box provided below, type out a paragraph that is no more than
+          500 characters long. Don't try to be funny just yet. We'll get to the
+          funny-business in a little bit.
+        </p>
+        {/* "Hey man!" They were shocked! */}
         <textarea
+          spellCheck
+          rows="20"
+          cols="60"
+          wrap="hard"
+          required
+          maxLength="500"
           placeholder="Start typing your story here"
           onChange={event => this.changeHandler(event)}
         />
         <div>
           {this.renderRedirect()}
-          <button>Next</button>
+          <button onClick={this.setRedirect}>Next</button>
         </div>
       </div>
     );
   }
 }
-
-class CreateSelect extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return <div>use the words api here</div>;
-  }
-}
-
 const mapStateToProps = reduxState => {
   return reduxState;
 };
 
 const mapDispatchToProps = {
-  setGiven,
-  setLines,
-  setSelected
+  setGiven
 };
 
 const invokedConnect = connect(
   mapStateToProps,
   mapDispatchToProps
 );
-export default invokedConnect(Create, CreateSelect);
+export default invokedConnect(Create);

@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+
 const io = require("socket.io")();
 const massive = require("massive");
 const session = require("express-session");
@@ -24,6 +25,7 @@ const {
   deleteTemplate
 } = require("./controller/libraryController");
 const { getAllItems, updateQuant } = require("./controller/shopController");
+const { getWordInfo, getProfilePic } = require("./controller/apiController");
 
 app.use(express.json());
 // app.use(express.static(__dirname + "/../build"));
@@ -80,16 +82,16 @@ app.get("/api/shop/:prod_id", updateQuant);
 // community EndPoints
 // app.get("/api/community", community);
 
-//                        external API's
+//external API's
 
-// app.get();
-// `https://randomuser.me/api/portraits/med/lego/${Math.floor(
-//   Math.random() * 10
-//   ) + 1}.jpg`;
+// app.get('https://randomuser.me/api/portraits/med/lego/:id');
+//  id = Math.floor(Math.random() * 10) + 1}.jpg
 
-// app.get();
-// `https://wordsapiv1.p.mashape.com/words/${pickedWord}`
-
+// app.get(
+//   "https://www.dictionaryapi.com/api/v3/references/collegiate/json/:word",
+//   getWordInfo
+// );
+//68c81f9b-028f-4b22-82ae-8ee40ce43404
 //
 
 // Becasue of browser router, you need the below lines.

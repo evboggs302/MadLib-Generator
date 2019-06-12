@@ -9,7 +9,8 @@ import Story from "./Components/FinalStory/FinalStory";
 // import Community from "./Components/Community/Community";
 import Register from "./Components/Auth/Register/Register";
 import Create from "./Components/Create/Create";
-import CreateSelect from "./Components/Create/Create";
+import CreateSelect from "./Components/Create/CreateSelect";
+import Review from "./Components/Create/Review";
 // import History from "./Components/History/History";
 import CatchAll from "./Components/CatchAll/CatchAll";
 
@@ -33,12 +34,13 @@ function App() {
         <Route path="/shopping/cart" component={Cart} />
         <Route path="/reqs" component={Reqs} />
         <Route exact path="/create" component={Create} />
-        <Route path="/create/select" component={CreateSelect} />
+        <Route path="/createselect" component={CreateSelect} />
         {/* <Route path="/history" component={History} /> */}
         <Route path="/library" component={Library} />
         {/* <Route path="/community" component={Community} /> */}
         <Route path="/story" component={Story} />
         <Route path="/register" component={Register} />
+        <Route path="/review" component={Review} />
         <Route path="*" componen={CatchAll} />
       </Switch>
     </div>
