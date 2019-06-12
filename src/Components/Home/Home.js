@@ -44,9 +44,9 @@ class Home extends Component {
             <p>
               {" "}
               Welcome to the place where the words are made up, and the stories
-              don't matter. If you'd like to ejoy, and possibly create, more
+              don't matter. If you'd like to enjoy, and possibly create, more
               labs on this site, please login above. If you don't want to login,
-              I understand. I too like to live life on the edge on ocassion.
+              I understand. I too like to live life on the edge on occasion.
               Simply click the "Random" button below to get started.
             </p>
             <div>

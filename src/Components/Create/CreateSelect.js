@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { setSelected, setBlanks, setLines } from "../../ducks/CreationReducer";
+import {
+  setSelected,
+  setBlanks,
+  setLines,
+  setTitle
+} from "../../ducks/CreationReducer";
 import axios from "axios";
 import { NavLink, Redirect } from "react-router-dom";
 
@@ -9,25 +14,22 @@ class CreateSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedWord: [],
-      selectedWordTypes: [],
+      createdTitle: "",
+      selectedWordInfo: [],
+      wordBlanks: [],
       lines: []
     };
-    // this.removeDuplicates(this.state.selectedWordTypes)
   }
-  //   componentWillMount() {}
 
-  //   removeDuplicates = (arr) => {
-  //       let removedDoubles = []
-  //     for (let i = 0; i < arr.length; i++) {
-  //         if(arr.length = 1){
-
-  //         }
-  //     }
-  //   };
+  changeTitle = event => {
+    this.setState({
+      createdTitle: event.target.value
+    });
+    this.props.setTitle();
+  };
 
   getWordInfo = EventTarget => {
-    const index = EventTarget.key;
+    const index = +EventTarget.key;
     console.log(index);
     const word = EventTarget.props.children.props.children;
     console.log(word);
@@ -42,14 +44,26 @@ class CreateSelect extends Component {
         let arr = res.data;
         let types = [];
         for (let i = 0; i < arr.length; i++) {
-          console.log(arr[i].fl);
           types.push(arr[i].fl);
         }
+        const uniqueVals = new Set(types);
+        const partsOfSpeech = [...uniqueVals];
         this.setState({
-          selectedWord: [...this.state.selectedWord, wordInfo],
-          selectedWordTypes: [...this.state.selectedWordTypes, types]
+          selectedWordInfo: [
+            ...this.state.selectedWordInfo,
+            { word: wordInfo, type: partsOfSpeech }
+          ]
         });
       });
+  };
+
+  clearSelectedWords = () => {
+    this.setState({
+      createdTitle: "",
+      selectedWordInfo: [],
+      finalWordSelection: [],
+      lines: []
+    });
   };
 
   render() {
@@ -71,18 +85,19 @@ class CreateSelect extends Component {
         </div>
       );
     });
-    const { selectedWord, selectedWordTypes } = this.state;
-    const menu = selectedWord.map((e1, index) => {
-      const options = selectedWordTypes.map((e2, index) => {
-        const types = e2.map((e3, index) => {
-          return <option key={index}>{e3}</option>;
-        });
-        return <select key={index}>{types}</select>;
-      });
+    const { selectedWordInfo } = this.state;
+
+    console.log("this is wordInfo", selectedWordInfo);
+    const menu = selectedWordInfo.map((e, index) => {
       return (
         <div key={index}>
-          {e1[0]}
-          {options}
+          {" "}
+          {e.word[0]}
+          <select>
+            {e.type.map((type, index) => {
+              return <option key={index + 1}>{type}</option>;
+            })}
+          </select>
         </div>
       );
     });
@@ -90,13 +105,29 @@ class CreateSelect extends Component {
     return (
       <div>
         <h2>Your Story</h2>
+        <br />
+        <div>
+          Title:
+          <input required onChange={event => this.changeTitle(event)} />
+        </div>
         <div>
           <div>{mappedCreation}</div>
         </div>
+        <br />
         <h2>Selected Words' Type</h2>
         <span>
           <div>{menu}</div>
         </span>
+        {!selectedWordInfo.length ? (
+          <div />
+        ) : (
+          <div>
+            <button onClick={this.clearSelectedWords}>Clear Selected</button>
+            <NavLink to="/review">
+              <button>Continue to Review</button>
+            </NavLink>
+          </div>
+        )}
       </div>
     );
   }
@@ -108,7 +139,9 @@ const mapStateToProps = reduxState => {
 
 const mapDispatchToProps = {
   setLines,
-  setSelected
+  setTitle,
+  setSelected,
+  setBlanks
 };
 
 const invokedConnect = connect(

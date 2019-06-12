@@ -1,5 +1,6 @@
 const initialState = {
   given: "",
+  title: "",
   selected: [],
   blanks: [],
   lines: []
@@ -8,6 +9,7 @@ const SET_GIVEN = "SET_GIVEN";
 const SET_SELECTED = "SET_SELECTED";
 const SET_BLANKS = "SET_BLANKS";
 const SET_LINES = "SET_LINES";
+const SET_TITLE = "SET_TITLE";
 
 export default function CreationReducer(state = initialState, action) {
   switch (action.type) {
@@ -35,6 +37,14 @@ export default function CreationReducer(state = initialState, action) {
       return state;
   }
 }
+
+export function setTitle(title) {
+  return {
+    type: SET_TITLE,
+    payload: title
+  };
+}
+
 export function setGiven(typedInput) {
   return {
     type: SET_GIVEN,
