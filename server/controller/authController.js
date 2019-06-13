@@ -7,7 +7,7 @@ module.exports = {
     const db = req.app.get("db");
     db.check_existing_users(username).then(found => {
       if (!found[0]) {
-        res.status(200).send("Incorrect username/password");
+        res.status(500).send("Incorrect username/password");
       } else {
         bcrypt.compare(password, found[0].password).then(matched => {
           if (matched) {

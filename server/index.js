@@ -65,13 +65,13 @@ app.get("/api/user", userInfo);
 app.get("/api/logout", logout);
 
 // history EndPoints
-app.get("/api/history/", getUserHistory);
+app.get("/api/history", getUserHistory);
 app.post("/api/history", saveStory);
-app.put("/api/history/title", sortTitle);
-app.put("/api/history/date", sortDate);
+app.put("/api/history/bytitle", sortTitle);
+app.put("/api/history/bydate", sortDate);
 
 // library EndPoints
-app.get("/api/library/", getFullLibrary);
+app.get("/api/library", getFullLibrary);
 app.get("/api/library/random/:id", getRandom);
 app.get("/api/library/single/:id", getSingleTemplate);
 app.post("/api/library", saveTemplate);

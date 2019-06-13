@@ -28,9 +28,12 @@ class Header extends Component {
 
   login = () => {
     const { username, password } = this.state;
-    axios.post("/api/login", { username, password }).then(res => {
-      this.props.setUser(res.data);
-    });
+    axios
+      .post("/api/login", { username, password })
+      .then(res => {
+        this.props.setUser(res.data);
+      })
+      .catch(err => console.log(err));
   };
 
   logout = () => {
@@ -70,9 +73,7 @@ class Header extends Component {
                 name="password"
               />
               <NavLink to="/">
-                <button onClick={this.login} type="submit">
-                  Login
-                </button>
+                <button onClick={this.login}>Login</button>
               </NavLink>
             </div>
 

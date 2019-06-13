@@ -1,17 +1,37 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setFinal } from "../../ducks/StoryReducer";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 class Story extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      share: false
+    };
+  }
+
   componentDidMount() {
     this.toFinal();
   }
 
-  shareToCommunity = () => {
+  shareStorytoCommunity = () => {
+    this.setState({
+      share: true
+    });
     this.saveToUserHistory();
   };
 
-  saveToUserHistory = () => {};
+  saveToUserHistory = () => {
+    const { share } = this.state;
+    const { title, final } = this.props.story;
+    axios
+      .post("/api/history/", { title: title, share: share, story: final })
+      .then(res => {
+        console.log(res);
+      });
+  };
 
   toFinal = () => {
     let finalStory = [];
@@ -28,7 +48,7 @@ class Story extends Component {
   };
 
   render() {
-    console.log(this.props.story);
+    console.log(this.props);
     const { story } = this.props;
     const { user } = this.props.user;
     return (
@@ -42,7 +62,9 @@ class Story extends Component {
             []
           ) : (
             <div>
-              <button>Save</button>
+              <NavLink to="/">
+                <button onClick={this.saveToUserHistory}>Save</button>
+              </NavLink>
               <button>{`Save & Share`}</button>
             </div>
           )}

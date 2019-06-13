@@ -136,7 +136,7 @@ values
       ' on yer head, stash a/an ',
       ' in yer pants, and keep a/an ',
       ' perched atop yer ',
-      '. Aye, now ye be a real pirate!',
+      '. Aye, now ye be a real pirate!'
       ]),
 ('How to Date the Coolest Guy/Girl in School', ARRAY ['plural noun',
       'adverb',
@@ -171,7 +171,7 @@ values
       ', just play it ',
       '. Take a long pause before answering in a very ',
       ' voice. "I''ll have to ',
-      ' it over."',
+      ' it over."'
       ]);
 
 select * from library;
@@ -181,10 +181,17 @@ select * from library;
 create table history (
     user_id int references users(user_id),
     history_id serial primary key,
+    share boolean,
     title text,
-    story text[],
+    story text,
     date_made timestamptz
 );
+
+insert into history (user_id, title, story, share, date_made)
+values (1, 'Talk Like a Pirate', 'Ye can always pretend to be a bloodthirsty   , threatening everyone by waving yer    sword in the air, but until ye learn to  hdfhdfhdf  like a pirate, ye''ll never be  hdfhdfhdf  accepted as an authentic  dfhdfhdf . So here''s what ye do: Cleverly work into yer daily conversations  hdfhdfh  pirate phrases such as "Ahoy there,  fdgdfh ," or "Avast, ye  fhdfhdfhdf ," and "Shiver me  dfhdfhd ." Remember to drop all yer g''s when ye say such words as sailin'', spittin'', and fightin''. This will give ye a/an  fhdfhdfhd  start to being recognized as a swashbucklin''  dfhdfhd . Aye, now ye be a real pirate!', true, NOW())
+
+select * from history;
+-- SELECT * FROM history ORDER BY utc_offset DESC; 
 
 --
 
@@ -207,4 +214,3 @@ select * from shop;
 
 ----
 
--- SELECT * FROM pg_timezone_names ORDER BY utc_offset DESC; 

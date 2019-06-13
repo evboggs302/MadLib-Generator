@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   user: UserReducer,
   story: StoryReducer,
   creation: CreationReducer,
-  history: HistoryReducer
+  userHistory: HistoryReducer
 });
 
 export default createStore(rootReducer);

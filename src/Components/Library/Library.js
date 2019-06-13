@@ -30,7 +30,6 @@ class Library extends Component {
       console.log(res.data);
       this.props.setStory(res.data);
     });
-    this.setRedirect();
   };
 
   render() {
@@ -41,10 +40,11 @@ class Library extends Component {
     let mappedLibrary = library.map((e, index) => {
       return (
         <div key={index}>
-          {this.renderRedirect()}
-          <button onClick={() => this.getSingleTemplate(e.story_id)}>
-            {e.title}
-          </button>
+          <NavLink to="/reqs">
+            <button onClick={() => this.getSingleTemplate(e.story_id)}>
+              {e.title}
+            </button>
+          </NavLink>
           {/* {!e.} */}
         </div>
       );
