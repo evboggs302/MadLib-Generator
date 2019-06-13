@@ -33,6 +33,7 @@ module.exports = {
   saveTemplate: (req, res, next) => {
     const {} = req.body;
     const db = req.app.get("db");
+    db.save_new_template();
   },
   deleteTemplate: (req, res, next) => {
     const {} = req.body;

@@ -26,15 +26,12 @@ class Home extends Component {
   getRandomTemplate = () => {
     const id = Math.floor(Math.random() * 4) + 1;
     axios.get(`/api/library/random/${id}`).then(res => {
-      console.log(res.data);
       this.props.setStory(res.data);
     });
     this.setRedirect();
   };
 
   render() {
-    console.log(this.props.user);
-    console.log(this.props.story);
     const { user } = this.props.user;
     return (
       <div>

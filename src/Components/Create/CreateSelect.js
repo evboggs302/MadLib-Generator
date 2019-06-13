@@ -45,31 +45,26 @@ class CreateSelect extends Component {
   };
 
   saveBlanks = ([type, index]) => {
-    const { wordBlanks } = this.state;
-    if (wordBlanks.length === 0) {
-      let copy = this.state.wordBlanks.slice();
+    console.log("passed-in:", [type, index]);
+    const { blanks } = this.props.creation;
+    if (blanks.length === 0) {
+      let copy = blanks.slice();
       copy.push([type, index]);
-      this.props.setBlanks(copy);
-      this.setState({
-        wordBlanks: copy
-      });
-    } else if (wordBlanks.length) {
-      const { wordBlanks } = this.state;
-      for (let i = 0; i < wordBlanks.length; i++) {
-        if (wordBlanks[i][1] === index) {
-          let parrot = this.state.wordBlanks.slice();
+      console.log("COPY hit:", copy);
+      return this.props.setBlanks(copy);
+    } else if (blanks.length) {
+      const { blanks } = this.props.creation;
+      for (let i = 0; i < blanks.length; i++) {
+        if (blanks[i][1] == index) {
+          let parrot = blanks.slice();
           parrot.splice(i, 1, [type, index]);
-          this.props.setBlanks(this.state.wordBlanks);
-          this.setState({
-            wordBlanks: parrot
-          });
-        } else {
-          let echo = this.state.wordBlanks.slice();
+          console.log("PARROT hit:", blanks[i][1], index);
+          return this.props.setBlanks(parrot);
+        } else if (blanks[i][1] !== index) {
+          let echo = blanks.slice();
           echo.push([type, index]);
-          this.props.setBlanks(echo);
-          this.setState({
-            wordBlanks: echo
-          });
+          console.log("ECHO hit:", echo);
+          return this.props.setBlanks(echo);
         }
       }
     }
@@ -138,7 +133,7 @@ class CreateSelect extends Component {
     const { selectedWordInfo } = this.state;
     const menu = selectedWordInfo.map((e, indexOfOriginal) => {
       return (
-        <div key={indexOfOriginal + 1}>
+        <div key={indexOfOriginal}>
           {" "}
           {e.word[0]}
           <select
@@ -157,7 +152,7 @@ class CreateSelect extends Component {
         </div>
       );
     });
-    console.log("state:", this.state);
+
     console.log("store:", this.props.creation);
 
     return (

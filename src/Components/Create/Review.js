@@ -1,17 +1,46 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { setGiven, setSelected, setLines } from "../../ducks/CreationReducer";
+import {
+  setGiven,
+  setSelected,
+  setLines,
+  setBlanks,
+  killStore
+} from "../../ducks/CreationReducer";
 import { NavLink } from "react-router-dom";
 
 class Review extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
+  comparator = (a, b) => {
+    if (a[1] < b[1]) return -1;
+    if (a[1] > b[1]) return 1;
+    return 0;
+  };
   render() {
-    console.log("state:", this.state);
     console.log("store:", this.props.creation);
-    return <div>Review Component</div>;
+    const { blanks } = this.props.creation;
+
+    let sorted = blanks.sort(this.comparator);
+    console.log(sorted);
+    // const mapped
+
+    return (
+      <div>
+        <div>mapped required words</div>
+        <div>mapped required words</div>
+        <div>
+          <NavLink to="/createselect">
+            <button onClick={this.props.killStore}>Go Back</button>
+          </NavLink>
+
+          <NavLink to="/library">
+            <button>button to submit template to DB</button>
+          </NavLink>
+        </div>
+      </div>
+    );
   }
 }
 
@@ -19,14 +48,16 @@ const mapStateToProps = reduxState => {
   return reduxState;
 };
 
-// const mapDispatchToProps = {
-//   setGiven,
-//   setLines,
-//   setSelected
-// };
+const mapDispatchToProps = {
+  setGiven,
+  setSelected,
+  setLines,
+  setBlanks,
+  killStore
+};
 
 const invokedConnect = connect(
-  mapStateToProps
-  //   mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 );
 export default invokedConnect(Review);

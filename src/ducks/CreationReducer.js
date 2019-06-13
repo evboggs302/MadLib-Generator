@@ -10,6 +10,7 @@ const SET_SELECTED = "SET_SELECTED";
 const SET_BLANKS = "SET_BLANKS";
 const SET_LINES = "SET_LINES";
 const SET_TITLE = "SET_TITLE";
+const KILL_STORE = "KILL_STORE";
 
 export default function CreationReducer(state = initialState, action) {
   switch (action.type) {
@@ -37,6 +38,14 @@ export default function CreationReducer(state = initialState, action) {
       return {
         ...state,
         lines: action.payload
+      };
+    case KILL_STORE:
+      return {
+        ...state,
+        title: "",
+        selected: [],
+        blanks: [],
+        lines: []
       };
     default:
       return state;
@@ -73,5 +82,10 @@ export function setLines(lines) {
   return {
     type: SET_LINES,
     payload: lines
+  };
+}
+export function killStore() {
+  return {
+    type: KILL_STORE
   };
 }

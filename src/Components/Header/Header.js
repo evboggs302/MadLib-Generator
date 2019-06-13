@@ -62,6 +62,11 @@ class Header extends Component {
             <div>
               Password:
               <input
+                onKeyUp={event => {
+                  if (event.keyCode === 13) {
+                    this.login();
+                  }
+                }}
                 onChange={e =>
                   this.universalChangeHandler(e.target.name, e.target.value)
                 }
@@ -69,7 +74,19 @@ class Header extends Component {
                 value={password}
                 name="password"
               />
-              <button onClick={this.login}>Login</button>
+              <NavLink to="/">
+                <button
+                  onKeyUp={event => {
+                    if (event.keyCode === 13) {
+                      this.login();
+                    }
+                  }}
+                  onClick={this.login}
+                  type="submit"
+                >
+                  Login
+                </button>
+              </NavLink>
             </div>
 
             <div>
@@ -79,7 +96,11 @@ class Header extends Component {
         ) : (
           <div>
             <div>{user.username}</div>
-            <button onClick={this.logout}>Logout</button>
+            <NavLink to="/">
+              <button type="submit" onClick={this.logout}>
+                Logout
+              </button>
+            </NavLink>
           </div>
         )}
 
