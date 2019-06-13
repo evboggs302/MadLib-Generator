@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import { setStory } from "../../ducks/StoryReducer";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class Library extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false,
       library: []
     };
   }
@@ -17,23 +16,13 @@ class Library extends Component {
   }
   getFullLibrary() {
     axios.get(`/api/library`).then(res => {
+      console.log(res.data);
       this.setState({
         ...this.state,
         library: res.data
       });
     });
   }
-  setRedirect = () => {
-    this.setState({
-      ...this.state,
-      redirect: true
-    });
-  };
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to="/reqs" />;
-    }
-  };
 
   getSingleTemplate = id => {
     console.log(typeof id);
@@ -56,6 +45,7 @@ class Library extends Component {
           <button onClick={() => this.getSingleTemplate(e.story_id)}>
             {e.title}
           </button>
+          {/* {!e.} */}
         </div>
       );
     });
@@ -63,9 +53,9 @@ class Library extends Component {
       <div>
         <h1>Your Library</h1>
         <div>{mappedLibrary}</div>
-        <button>
-          <NavLink to="/create">Add+</NavLink>
-        </button>
+        <NavLink to="/create">
+          <button>Add+</button>
+        </NavLink>
       </div>
     );
   }

@@ -11,9 +11,8 @@ import Register from "./Components/Auth/Register/Register";
 import Create from "./Components/Create/Create";
 import CreateSelect from "./Components/Create/CreateSelect";
 import Review from "./Components/Create/Review";
-// import History from "./Components/History/History";
+import History from "./Components/History/History";
 import CatchAll from "./Components/CatchAll/CatchAll";
-
 import { Switch, Route, NavLink } from "react-router-dom";
 import "./App.css";
 
@@ -35,7 +34,7 @@ function App() {
         <Route path="/reqs" component={Reqs} />
         <Route exact path="/create" component={Create} />
         <Route path="/createselect" component={CreateSelect} />
-        {/* <Route path="/history" component={History} /> */}
+        <Route path="/history" component={History} />
         <Route path="/library" component={Library} />
         {/* <Route path="/community" component={Community} /> */}
         <Route path="/story" component={Story} />

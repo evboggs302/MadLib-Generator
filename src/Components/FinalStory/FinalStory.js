@@ -7,6 +7,12 @@ class Story extends Component {
     this.toFinal();
   }
 
+  shareToCommunity = () => {
+    this.saveToUserHistory();
+  };
+
+  saveToUserHistory = () => {};
+
   toFinal = () => {
     let finalStory = [];
     const { lines, blanks } = this.props.story;

@@ -41,7 +41,7 @@ class CreateSelect extends Component {
     if (blanks.length === 0) {
       let copy = blanks.slice();
       copy.push([type, index]);
-      console.log(copy);
+      console.log("COPY---", copy);
       return this.props.setBlanks(copy);
     } else if (blanks.length) {
       const { blanks } = this.props.creation;
@@ -49,12 +49,12 @@ class CreateSelect extends Component {
         if (blanks[i][1] === index) {
           let parrot = blanks.slice();
           parrot.splice(i, 1, [type, index]);
-          console.log(parrot);
+          console.log("PARROT---", parrot);
           return this.props.setBlanks(parrot);
         } else if (blanks[i][1] !== index) {
           let echo = blanks.slice();
           echo.push([type, index]);
-          console.log(echo);
+          console.log("ECHO---", echo);
           return this.props.setBlanks(echo);
         }
       }

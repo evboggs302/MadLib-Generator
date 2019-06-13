@@ -183,8 +183,7 @@ create table history (
     history_id serial primary key,
     title text,
     story text[],
-    date_made date,
-    time_made time
+    date_made timestamptz
 );
 
 --
@@ -205,3 +204,7 @@ values
 ('https://www.eurekapuzzles.com/components/com_virtuemart/shop_image/product/33840.jpg', 'Adult Mad Libs Game', 6.90, 12);
 
 select * from shop;
+
+----
+
+-- SELECT * FROM pg_timezone_names ORDER BY utc_offset DESC; 

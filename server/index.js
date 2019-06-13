@@ -13,6 +13,7 @@ const {
   logout
 } = require("./controller/authController");
 const {
+  getUserHistory,
   saveStory,
   sortDate,
   sortTitle
@@ -25,7 +26,7 @@ const {
   deleteTemplate
 } = require("./controller/libraryController");
 const { getAllItems, updateQuant } = require("./controller/shopController");
-const { getWordInfo, getProfilePic } = require("./controller/apiController");
+const { getProfilePic } = require("./controller/apiController");
 
 app.use(express.json());
 // app.use(express.static(__dirname + "/../build"));
@@ -64,6 +65,7 @@ app.get("/api/user", userInfo);
 app.get("/api/logout", logout);
 
 // history EndPoints
+app.get("/api/history/", getUserHistory);
 app.post("/api/history", saveStory);
 app.put("/api/history/title", sortTitle);
 app.put("/api/history/date", sortDate);

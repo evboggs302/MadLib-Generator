@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { setFinal, fillBlanks } from "../../ducks/StoryReducer";
 import "./Reqs.css";
 
@@ -8,21 +8,9 @@ class Reqs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false,
       blanks: []
     };
   }
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    });
-  };
-
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to="/story" />;
-    }
-  };
 
   changeHandler(event, index) {
     const { blanks } = this.state;
@@ -51,18 +39,31 @@ class Reqs extends Component {
           })
         : arr;
     console.log(this.props.story.blanks);
+    const { user } = this.props.user;
     return (
       <div className="inputs">
         <h3 className="wordsBruh">{title}</h3>
         {mappedInputs}
         <br />
-
-        <button
-          className="createButton"
-          onClick={() => this.props.fillBlanks(this.state.blanks)}
-        >
-          <NavLink to="/story">Create Story</NavLink>
-        </button>
+        <div>
+          {!user ? (
+            <NavLink to="/">
+              <button>Go Back</button>
+            </NavLink>
+          ) : (
+            <NavLink to="/library">
+              <button>Back to Library</button>
+            </NavLink>
+          )}
+          <NavLink to="/story">
+            <button
+              className="createButton"
+              onClick={() => this.props.fillBlanks(this.state.blanks)}
+            >
+              Create Story
+            </button>
+          </NavLink>
+        </div>
       </div>
     );
   }

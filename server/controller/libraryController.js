@@ -1,11 +1,10 @@
 module.exports = {
   getFullLibrary: (req, res, next) => {
-    console.log("this is session:", req.session);
+    // console.log("this is session:", req.session);
     const { user_id } = req.session.user;
     const db = req.app.get("db");
     db.get_full_library(user_id)
       .then(library => {
-        console.log(library);
         res.status(200).send(library);
       })
       .catch(err => console.log(err));

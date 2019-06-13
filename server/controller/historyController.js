@@ -1,14 +1,24 @@
 module.exports = {
+  getUserHistory: (req, res, next) => {
+    const db = req.app.get("db");
+    const {} = req.body;
+    const { user_id } = req.session.user;
+    db.get_user_history();
+  },
   saveStory: (req, res, next) => {
-    const {} = req.body;
     const db = req.app.get("db");
+    const {} = req.body;
+    const { user_id } = req.session.user;
+    db.save_to_history();
   },
-  sortTitle: (res, req, next) => {
-    const {} = req.body;
+  sortTitle: (req, res, next) => {
     const db = req.app.get("db");
+    const {} = req.body;
+    const { user_id } = req.session.user;
   },
-  sortDate: (res, req, next) => {
-    const {} = req.body;
+  sortDate: (req, res, next) => {
     const db = req.app.get("db");
+    const {} = req.body;
+    const { user_id } = req.session.user;
   }
 };

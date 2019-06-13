@@ -62,11 +62,6 @@ class Header extends Component {
             <div>
               Password:
               <input
-                onKeyUp={event => {
-                  if (event.keyCode === 13) {
-                    this.login();
-                  }
-                }}
                 onChange={e =>
                   this.universalChangeHandler(e.target.name, e.target.value)
                 }
@@ -75,15 +70,7 @@ class Header extends Component {
                 name="password"
               />
               <NavLink to="/">
-                <button
-                  onKeyUp={event => {
-                    if (event.keyCode === 13) {
-                      this.login();
-                    }
-                  }}
-                  onClick={this.login}
-                  type="submit"
-                >
+                <button onClick={this.login} type="submit">
                   Login
                 </button>
               </NavLink>

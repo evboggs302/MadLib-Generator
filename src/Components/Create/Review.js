@@ -11,13 +11,20 @@ import {
 import { NavLink } from "react-router-dom";
 
 class Review extends Component {
+  getFullLibrary = () => {
+    axios.get(`/api/library`).then(res => {
+      this.setState({
+        ...this.state,
+        library: res.data
+      });
+    });
+  };
   createTmplate = () => {
     const { lines, title, blanks } = this.props.creation;
     let types = [];
     for (let i = 0; i < blanks.length; i++) {
       types.push(blanks[i][0]);
     }
-
     let stringLines = [];
     for (let i = 0; i < lines.length; i++) {
       stringLines.push(lines[i][0]);
@@ -31,6 +38,7 @@ class Review extends Component {
       .catch(error => {
         alert(error);
       });
+    this.getFullLibrary();
   };
 
   comparator = (a, b) => {
@@ -78,7 +86,7 @@ class Review extends Component {
             <button onClick={this.props.killStore}>Go Back</button>
           </NavLink>
 
-          <NavLink to="/">
+          <NavLink to="/library">
             <button onClick={this.createTmplate}>Submit Template</button>
           </NavLink>
         </div>
