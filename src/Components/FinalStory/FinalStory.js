@@ -16,7 +16,7 @@ class Story extends Component {
     if (lines.length <= 2) {
       finalStory.push(lines[lines.length]);
     } else {
-      finalStory.push(lines[lines.length - 2]);
+      finalStory.push(lines[lines.length - 1]);
     }
     this.props.setFinal(finalStory.join(" "));
   };

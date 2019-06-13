@@ -56,7 +56,7 @@ values
       '. Piranhas are attracted to fresh ',
        'and will most likely take a bite out of your ',
        'if you ',
-       'in the water!', '0']),
+       'in the water!']),
 ('Three Little Pigs', ARRAY [
       'adjective',
       'verb',
@@ -106,7 +106,7 @@ values
       ' and ',
       '. He couldn''t blow the house down. All the pigs went to live in the ',
       ' house and they all ',
-      ' happily ever after.', '0']),
+      ' happily ever after.']),
 ('Talk Like a Pirate', ARRAY ['noun',
       'adjective',
       'verb',
@@ -137,7 +137,7 @@ values
       ' in yer pants, and keep a/an ',
       ' perched atop yer ',
       '. Aye, now ye be a real pirate!',
-      '0']),
+      ]),
 ('How to Date the Coolest Guy/Girl in School', ARRAY ['plural noun',
       'adverb',
       'verb',
@@ -172,7 +172,7 @@ values
       '. Take a long pause before answering in a very ',
       ' voice. "I''ll have to ',
       ' it over."',
-      '0']);
+      ]);
 
 select * from library;
 

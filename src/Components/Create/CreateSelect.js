@@ -21,49 +21,40 @@ class CreateSelect extends Component {
   }
 
   saveTemplate = () => {
-    const { given } = this.props.creation;
-    const { wordBlanks } = this.state;
+    const { given, blanks } = this.props.creation;
     const givenSplit = given.split(" ");
     let tempLines = [];
-
-    let previBlank = -1;
-    for (let i = 0; i < wordBlanks.length; i++) {
-      let index = wordBlanks[i][1];
+    var previBlank = -1;
+    for (let i = 0; i < blanks.length; i++) {
+      let index = blanks[i][1];
       let parrot = givenSplit.slice(previBlank + 1, index).join(" ");
       tempLines.push([parrot]);
       previBlank = index;
     }
-    let echo = givenSplit
-      .slice(previBlank + 1, givenSplit.length + 1)
-      .join(" ");
+    let echo = givenSplit.slice(previBlank + 1, givenSplit.length).join(" ");
     tempLines.push([echo]);
-
     this.props.setLines(tempLines);
-    this.setState({
-      lines: tempLines
-    });
   };
 
   saveBlanks = ([type, index]) => {
-    console.log("passed-in:", [type, index]);
     const { blanks } = this.props.creation;
     if (blanks.length === 0) {
       let copy = blanks.slice();
       copy.push([type, index]);
-      console.log("COPY hit:", copy);
+      console.log(copy);
       return this.props.setBlanks(copy);
     } else if (blanks.length) {
       const { blanks } = this.props.creation;
       for (let i = 0; i < blanks.length; i++) {
-        if (blanks[i][1] == index) {
+        if (blanks[i][1] === index) {
           let parrot = blanks.slice();
           parrot.splice(i, 1, [type, index]);
-          console.log("PARROT hit:", blanks[i][1], index);
+          console.log(parrot);
           return this.props.setBlanks(parrot);
         } else if (blanks[i][1] !== index) {
           let echo = blanks.slice();
           echo.push([type, index]);
-          console.log("ECHO hit:", echo);
+          console.log(echo);
           return this.props.setBlanks(echo);
         }
       }
@@ -131,6 +122,7 @@ class CreateSelect extends Component {
       );
     });
     const { selectedWordInfo } = this.state;
+    const { title } = this.props.creation;
     const menu = selectedWordInfo.map((e, indexOfOriginal) => {
       return (
         <div key={indexOfOriginal}>
@@ -172,8 +164,12 @@ class CreateSelect extends Component {
           <div>{menu}</div>
         </span>
         {!selectedWordInfo.length ? (
-          <div />
+          []
         ) : !this.props.creation.blanks.length ? (
+          <div>
+            <button onClick={this.clearSelectedWords}>Clear Selected</button>
+          </div>
+        ) : !title ? (
           <div>
             <button onClick={this.clearSelectedWords}>Clear Selected</button>
           </div>

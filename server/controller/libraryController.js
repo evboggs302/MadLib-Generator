@@ -31,9 +31,17 @@ module.exports = {
       .catch(err => console.log(err));
   },
   saveTemplate: (req, res, next) => {
-    const {} = req.body;
+    const { user_id } = req.session.user;
+    const { title, blanks, lines } = req.body;
+    console.log(req.body);
     const db = req.app.get("db");
-    db.save_new_template();
+    db.save_new_template([user_id, title, blanks, lines])
+      .then(() => {
+        res
+          .status(200)
+          .send("Your Mad Lib template has been created and saved");
+      })
+      .catch(error => console.log(error));
   },
   deleteTemplate: (req, res, next) => {
     const {} = req.body;
