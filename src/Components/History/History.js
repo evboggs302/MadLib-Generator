@@ -2,43 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import {
-  setHistory,
-  setHistoryDate,
-  setHistoryStory,
-  setHistoryTitle,
-  setID,
-  setShare
-} from "../../ducks/HistoryReducer";
-import { setFinal } from "../../ducks/StoryReducer";
+import { setHistory } from "../../ducks/HistoryReducer";
 
 class History extends Component {
   componentDidMount() {
     this.getUserHistory();
   }
-
-  //   sortByTitle = () => {
-  //     axios
-  //       .put("/api/history/bytitle")
-  //       .then(res => {
-  //         console.log("history data:", res.data);
-  //         this.props.setHistory(res.data);
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       });
-  //   };
-  //   sortByDate = () => {
-  //     axios
-  //       .put("/api/history/bydate")
-  //       .then(res => {
-  //         console.log("history data:", res.data);
-  //         this.props.setHistory(res.data);
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       });
-  //   };
 
   toggleShare = (user, boo, id) => {
     if (boo === true) {
@@ -105,13 +74,15 @@ class History extends Component {
           <div>
             <h4>{title}</h4>
             <div>
-              <button
-                onClick={e => {
-                  return this.deleteHistory(history_id);
-                }}
-              >
-                Delete
-              </button>
+              <NavLink to="/history">
+                <button
+                  onClick={e => {
+                    return this.deleteHistory(history_id);
+                  }}
+                >
+                  Delete
+                </button>
+              </NavLink>
               {share === true ? (
                 <button
                   onClick={e => {
@@ -142,6 +113,11 @@ class History extends Component {
       <div>
         <h2>Your History</h2>
         <span>{mappedHistory}</span>
+        <div>
+          <NavLink to="/">
+            <button>Go Back Home</button>
+          </NavLink>
+        </div>
       </div>
     );
   }
@@ -151,13 +127,7 @@ const mapStateToProps = reduxState => {
 };
 
 const mapDispatchToProps = {
-  setHistory,
-  setHistoryDate,
-  setHistoryStory,
-  setHistoryTitle,
-  setID,
-  setShare,
-  setFinal
+  setHistory
 };
 
 const invokedConnect = connect(

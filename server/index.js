@@ -25,8 +25,15 @@ const {
   saveTemplate,
   deleteTemplate
 } = require("./controller/libraryController");
-const { getAllItems, updateQuant } = require("./controller/shopController");
-const { getProfilePic } = require("./controller/apiController");
+// const { getProfilePic } = require("./controller/apiController");
+const {
+  getAllItems,
+  getCart,
+  addToCart,
+  removeFromCart,
+  deleteCart,
+  updateQuant
+} = require("./controller/shopController");
 
 app.use(express.json());
 // app.use(express.static(__dirname + "/../build"));
@@ -78,8 +85,12 @@ app.post("/api/library", saveTemplate);
 app.delete("/api/library/:story_id", deleteTemplate);
 
 // shop EndPoints
-app.get("/api/shop", getAllItems);
-app.get("/api/shop/:prod_id", updateQuant);
+app.get("/api/shop/:id", getAllItems);
+app.get("/api/shop/cart/:id", getCart);
+app.put("/api/shop/:prod_id", updateQuant);
+app.post("/api/shopping/cart/:id", addToCart);
+app.post("/api/shop/cart/:id", removeFromCart);
+app.delete("/api/shop/cart/:id", deleteCart);
 
 // community EndPoints
 // app.get("/api/community", community);
