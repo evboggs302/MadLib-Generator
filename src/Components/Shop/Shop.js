@@ -7,36 +7,76 @@ import "./Shop.css";
 
 class Shop extends Component {
   componentDidMount = () => {
+    const { user } = this.props.user;
     const { user_id } = this.props.user.user;
-    this.getCartItems(user_id);
+    if (user) {
+      this.getCartItems(user_id);
+    }
   };
   componentWillMount = () => {
     console.log(this.props);
-    const { user_id } = this.props.user.user;
-    this.getShopItems(user_id);
+    this.getShopItems();
   };
 
-  getShopItems = id => {
+  getShopItems = () => {
     axios
-      .get(`/api/shop/${id}`)
+      .get(`/api/shop`)
       .then(res => {
-        console.log(res.data);
         this.props.setStock(res.data);
       })
       .catch(err => console.log(err));
   };
-  getCartItems = id => {
-    axios.get(`/api/shop/cart/${id}`).then(res => {
-      console.log(res.data);
-    });
+  getCartItems = () => {
+    const { user_id } = this.props.user.user;
+    console.log(user_id);
+    axios
+      .get(`/api/shoppingcart/${user_id}`)
+      .then(cart => {
+        console.log(cart.data);
+        this.props.setCart(cart.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  addToCart = (img, name, price, quant) => {
+    const { user_id } = this.props.user.user;
+    axios
+      .post(`/api/shopping/cart/${user_id}`, {
+        image: img,
+        name: name,
+        price: price,
+        quant: quant
+      })
+      .then(cart => {
+        this.props.setCart(cart.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  removeFromCart = name => {
+    const { user_id } = this.props.user.user;
+    axios
+      .put(`/api/shoppingcart/${user_id}`, { name: name })
+      .then(cart => {
+        this.props.setCart(cart.data);
+      })
+      .catch(err => console.log(err));
   };
 
   render() {
     console.log(this.props);
-    const { stock } = this.props.shop;
+    const { user } = this.props.user;
+    const { stock, cart } = this.props.shop;
+
     const mappedStock = stock.map(e => {
       const { prod_id, prod_img, prod_name, prod_price, quantity, user_id } = e;
-      console.log(prod_img);
+
+      let inCart = false;
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].prod_name === e.prod_name) {
+          inCart = true;
+        }
+      }
       return (
         <div key={prod_id}>
           <div>
@@ -49,7 +89,25 @@ class Shop extends Component {
             <div>{prod_price}</div>
           </div>
           <div>
-            <button>Add To Cart</button>
+            {!user ? (
+              <div>
+                <div type="text">
+                  **To add item to your cart, please login first.
+                </div>
+              </div>
+            ) : inCart === false ? (
+              <button
+                onClick={() =>
+                  this.addToCart(prod_img, prod_name, prod_price, 1)
+                }
+              >
+                Add To Cart
+              </button>
+            ) : (
+              <button onClick={() => this.removeFromCart(prod_name)}>
+                Remove From Cart
+              </button>
+            )}
           </div>
         </div>
       );
@@ -57,9 +115,16 @@ class Shop extends Component {
     return (
       <div>
         <h1>The Shop</h1>
-        <NavLink to="/shopping/cart">
-          <button>Shopping Cart</button>
-        </NavLink>
+        {!user ? (
+          <div>
+            <div type="text">**To access the cart, please login first.</div>
+          </div>
+        ) : (
+          <NavLink to="/shopping/cart">
+            <button>Shopping Cart</button>
+          </NavLink>
+        )}
+
         <div>{mappedStock}</div>
       </div>
     );

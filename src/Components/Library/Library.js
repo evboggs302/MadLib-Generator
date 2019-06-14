@@ -11,7 +11,7 @@ class Library extends Component {
       library: []
     };
   }
-  componentDidMount() {
+  componentWillMount() {
     this.getFullLibrary();
   }
   getFullLibrary() {

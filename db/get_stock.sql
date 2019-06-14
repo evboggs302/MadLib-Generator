@@ -1,2 +1,2 @@
 select * from shop
-where user_id is null or user_id = $1;
+where user_id is null

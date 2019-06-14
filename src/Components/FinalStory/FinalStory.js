@@ -16,7 +16,7 @@ class Story extends Component {
     this.toFinal();
   }
 
-  shareStorytoCommunity = () => {
+  saveAndShare = () => {
     this.setState({
       share: true
     });
@@ -65,7 +65,9 @@ class Story extends Component {
               <NavLink to="/">
                 <button onClick={this.saveToUserHistory}>Save</button>
               </NavLink>
-              <button>{`Save & Share`}</button>
+              <NavLink to="/">
+                <button onClick={this.saveAndShare}>{`Save & Share`}</button>
+              </NavLink>
             </div>
           )}
         </div>

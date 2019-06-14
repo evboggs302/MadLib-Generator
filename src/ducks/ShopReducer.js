@@ -17,16 +17,16 @@ export default function ShopReducer(state = initialState, action) {
   }
 }
 
-export function setStock(item) {
+export function setStock(stock) {
   return {
     type: SET_STOCK,
-    payload: item
+    payload: stock
   };
 }
 
-export function setCart(item) {
+export function setCart(cart) {
   return {
     type: SET_CART,
-    payload: item
+    payload: cart
   };
 }

@@ -85,11 +85,11 @@ app.post("/api/library", saveTemplate);
 app.delete("/api/library/:story_id", deleteTemplate);
 
 // shop EndPoints
-app.get("/api/shop/:id", getAllItems);
-app.get("/api/shop/cart/:id", getCart);
-app.put("/api/shop/:prod_id", updateQuant);
+app.get("/api/shop", getAllItems);
+app.get("/api/shoppingcart/:id", getCart);
+app.put("/api/shop/:prod_id", updateQuant); // on checkout
 app.post("/api/shopping/cart/:id", addToCart);
-app.post("/api/shop/cart/:id", removeFromCart);
+app.put("/api/shoppingcart/:id", removeFromCart);
 app.delete("/api/shop/cart/:id", deleteCart);
 
 // community EndPoints
