@@ -86,7 +86,7 @@ class Review extends Component {
             <button onClick={this.props.killStore}>Go Back</button>
           </NavLink>
 
-          <NavLink to="/library">
+          <NavLink to="/">
             <button onClick={this.createTmplate}>Submit Template</button>
           </NavLink>
         </div>

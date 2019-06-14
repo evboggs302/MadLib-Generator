@@ -15,8 +15,8 @@ const {
 const {
   getUserHistory,
   saveStory,
-  sortDate,
-  sortTitle
+  toggleShare,
+  deleteFromHist
 } = require("./controller/historyController");
 const {
   getRandom,
@@ -67,8 +67,8 @@ app.get("/api/logout", logout);
 // history EndPoints
 app.get("/api/history", getUserHistory);
 app.post("/api/history", saveStory);
-app.put("/api/history/bytitle", sortTitle);
-app.put("/api/history/bydate", sortDate);
+app.put("/api/history/toggleshare/:user", toggleShare);
+app.delete("/api/history/:id", deleteFromHist);
 
 // library EndPoints
 app.get("/api/library", getFullLibrary);

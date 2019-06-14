@@ -15,7 +15,6 @@ module.exports = {
     const db = req.app.get("db");
     db.get_random(id)
       .then(rando => {
-        console.log(rando[0]);
         res.status(200).send(rando[0]);
       })
       .catch(err => console.log(err));
@@ -32,13 +31,12 @@ module.exports = {
   saveTemplate: (req, res, next) => {
     const { user_id } = req.session.user;
     const { title, blanks, lines } = req.body;
-    console.log(req.body);
     const db = req.app.get("db");
     db.save_new_template([user_id, title, blanks, lines])
       .then(() => {
         res
           .status(200)
-          .send("Your Mad Lib template has been created and saved");
+          .send("Your Mad Lib template has been placed in your Library");
       })
       .catch(error => console.log(error));
   },

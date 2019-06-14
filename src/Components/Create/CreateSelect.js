@@ -38,27 +38,21 @@ class CreateSelect extends Component {
 
   saveBlanks = ([type, index]) => {
     const { blanks } = this.props.creation;
-    if (blanks.length === 0) {
-      let copy = blanks.slice();
+    console.log("arr blanks:", blanks);
+    let copy = blanks.slice();
+    if (copy.length === 0) {
       copy.push([type, index]);
       console.log("COPY---", copy);
       return this.props.setBlanks(copy);
-    } else if (blanks.length) {
-      const { blanks } = this.props.creation;
-      for (let i = 0; i < blanks.length; i++) {
-        if (blanks[i][1] === index) {
-          let parrot = blanks.slice();
-          parrot.splice(i, 1, [type, index]);
-          console.log("PARROT---", parrot);
-          return this.props.setBlanks(parrot);
-        } else if (blanks[i][1] !== index) {
-          let echo = blanks.slice();
-          echo.push([type, index]);
-          console.log("ECHO---", echo);
-          return this.props.setBlanks(echo);
-        }
+    }
+    for (let i = 0; i < blanks.length; i++) {
+      if (blanks[i][1] === index) {
+        copy.splice(i, 1, [type, index]);
+        return this.props.setBlanks(copy);
       }
     }
+    copy.push([type, index]);
+    return this.props.setBlanks(copy);
   };
 
   changeTitle = event => {

@@ -33,7 +33,10 @@ class Header extends Component {
       .then(res => {
         this.props.setUser(res.data);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        alert("Incorrect username/password");
+      });
   };
 
   logout = () => {

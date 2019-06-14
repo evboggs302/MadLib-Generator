@@ -188,7 +188,7 @@ create table history (
 );
 
 insert into history (user_id, title, story, share, date_made)
-values (1, 'Talk Like a Pirate', 'Ye can always pretend to be a bloodthirsty   , threatening everyone by waving yer    sword in the air, but until ye learn to  hdfhdfhdf  like a pirate, ye''ll never be  hdfhdfhdf  accepted as an authentic  dfhdfhdf . So here''s what ye do: Cleverly work into yer daily conversations  hdfhdfh  pirate phrases such as "Ahoy there,  fdgdfh ," or "Avast, ye  fhdfhdfhdf ," and "Shiver me  dfhdfhd ." Remember to drop all yer g''s when ye say such words as sailin'', spittin'', and fightin''. This will give ye a/an  fhdfhdfhd  start to being recognized as a swashbucklin''  dfhdfhd . Aye, now ye be a real pirate!', true, NOW())
+values (1, 'Talk Like a Pirate', 'Ye can always pretend to be a bloodthirsty   , threatening everyone by waving yer    sword in the air, but until ye learn to  hdfhdfhdf  like a pirate, ye''ll never be  hdfhdfhdf  accepted as an authentic  dfhdfhdf . So here''s what ye do: Cleverly work into yer daily conversations  hdfhdfh  pirate phrases such as "Ahoy there,  fdgdfh ," or "Avast, ye  fhdfhdfhdf ," and "Shiver me  dfhdfhd ." Remember to drop all yer g''s when ye say such words as sailin'', spittin'', and fightin''. This will give ye a/an  fhdfhdfhd  start to being recognized as a swashbucklin''  dfhdfhd . Aye, now ye be a real pirate!', true, NOW());
 
 select * from history;
 -- SELECT * FROM history ORDER BY utc_offset DESC; 
