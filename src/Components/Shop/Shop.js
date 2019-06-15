@@ -69,8 +69,8 @@ class Shop extends Component {
     const { stock, cart } = this.props.shop;
 
     const mappedStock = stock.map(e => {
-      const { prod_id, prod_img, prod_name, prod_price, quantity, user_id } = e;
-
+      const { prod_id, prod_img, quantity, prod_name, prod_price } = e;
+      // const { user_id} = e
       let inCart = false;
       for (let i = 0; i < cart.length; i++) {
         if (cart[i].prod_name === e.prod_name) {
@@ -79,39 +79,46 @@ class Shop extends Component {
       }
       return (
         <div key={prod_id}>
-          <div>
-            <img src={`${prod_img}`} alt="" />
-          </div>
-          <div>
-            <h3>{prod_name}</h3>
-          </div>
-          <div>
-            <div>{prod_price}</div>
-          </div>
-          <div>
-            {!user ? (
+          {quantity === 0 ? (
+            []
+          ) : (
+            <div key={prod_id}>
               <div>
-                <div type="text">
-                  **To add item to your cart, please login first.
-                </div>
+                <img src={`${prod_img}`} alt="" />
               </div>
-            ) : inCart === false ? (
-              <button
-                onClick={() =>
-                  this.addToCart(prod_img, prod_name, prod_price, 1)
-                }
-              >
-                Add To Cart
-              </button>
-            ) : (
-              <button onClick={() => this.removeFromCart(prod_name)}>
-                Remove From Cart
-              </button>
-            )}
-          </div>
+              <div>
+                <h3>{prod_name}</h3>
+              </div>
+              <div>
+                <div>{prod_price}</div>
+              </div>
+              <div>
+                {!user ? (
+                  <div>
+                    <div type="text">
+                      **To add item to your cart, please login first.
+                    </div>
+                  </div>
+                ) : inCart === false ? (
+                  <button
+                    onClick={() =>
+                      this.addToCart(prod_img, prod_name, prod_price, 1)
+                    }
+                  >
+                    Add To Cart
+                  </button>
+                ) : (
+                  <button onClick={() => this.removeFromCart(prod_name)}>
+                    Remove From Cart
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       );
     });
+
     return (
       <div>
         <h1>The Shop</h1>

@@ -1,6 +1,5 @@
 module.exports = {
   getAllItems: (req, res, next) => {
-    // const { id } = req.params;
     const db = req.app.get("db");
     db.get_stock()
       .then(stock => {
@@ -40,6 +39,11 @@ module.exports = {
   deleteCart: (req, res, next) => {
     const { id } = req.params;
     const db = req.app.get("db");
+    db.delete_cart(id)
+      .then(cart => {
+        res.status(200).send(cart);
+      })
+      .catch(err => console.log(err));
   },
   updateQuant: (req, res, next) => {
     const db = req.app.get("db");
