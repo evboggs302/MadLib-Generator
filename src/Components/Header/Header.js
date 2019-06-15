@@ -20,11 +20,11 @@ class Header extends Component {
     });
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     axios.get("/api/user").then(res => {
       this.props.setUser(res.data);
     });
-  }
+  };
 
   login = () => {
     const { username, password } = this.state;
@@ -48,6 +48,7 @@ class Header extends Component {
   render() {
     const { username, password } = this.state;
     const { user } = this.props.user;
+    const picNumber = Math.floor(Math.random() * 10) + 1;
     return (
       <header className="main-header">
         <div>
@@ -86,58 +87,22 @@ class Header extends Component {
           </div>
         ) : (
           <div>
-            <div>{user.username}</div>
-            <NavLink to="/">
-              <button type="submit" onClick={this.logout}>
-                Logout
-              </button>
-            </NavLink>
+            <div>
+              <div>{user.username}</div>
+              <img
+                src={`https://randomuser.me/api/portraits/med/lego/${picNumber}.jpg`}
+                alt=""
+              />
+            </div>
+            <div>
+              <NavLink to="/">
+                <button type="submit" onClick={this.logout}>
+                  Logout
+                </button>
+              </NavLink>
+            </div>
           </div>
         )}
-
-        {/* {!user ? (  
-         //   <div>
-          //     <div>
-          //       Username:
-          //       <input 
-         //         onChange={e => 
-         //           this.universalChangeHandler(e.target.name, e.target.value)
-          //         }
-          //         value={username}
-          //         name="username"
-          //       />
-          //     </div>
-         //     <div>
-          //       Email:
-          //       <input
-          //         onChange={e =>
-          //           this.universalChangeHandler(e.target.name, e.target.value)
-          //         }
-          //         type="email"
-          //         value={email}
-          //         name="email"
-          //       />
-          //     </div>
-          //     <div>
-          //       Password:
-          //       <input
-          //         onChange={e =>
-          //           this.universalChangeHandler(e.target.name, e.target.value)
-          //         }
-          //         type="password"
-          //         value={password}
-          //         name="password"
-          //       />
-          //     </div>
-        //   <div>
-        //     <button onClick={this.register}>Register</button>
-        //     <button onClick={this.login}>Login</button>
-        //   </div>
-        // ) : (
-        //   //   </div>
-        // //   <div>{JSON.stringify(user)}</div>
-        //   //   <MyLinks logout={this.logout} />
-        // )}  */}
       </header>
     );
   }

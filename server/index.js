@@ -82,7 +82,7 @@ app.get("/api/library", getFullLibrary);
 app.get("/api/library/random/:id", getRandom);
 app.get("/api/library/single/:id", getSingleTemplate);
 app.post("/api/library", saveTemplate);
-app.delete("/api/library/:story_id", deleteTemplate);
+app.delete("/api/library/:user", deleteTemplate);
 
 // shop EndPoints
 app.get("/api/shop", getAllItems);
@@ -95,17 +95,8 @@ app.delete("/api/shop/cart/:id", deleteCart);
 // community EndPoints
 // app.get("/api/community", community);
 
-//external API's
-
-// app.get('https://randomuser.me/api/portraits/med/lego/:id', profilePicToSession);
+// app.get('https://randomuser.me/api/portraits/med/lego/:id.jpg', profilePicToSession);
 //  id = Math.floor(Math.random() * 10) + 1}.jpg
-
-// app.get(
-//   "https://www.dictionaryapi.com/api/v3/references/collegiate/json/:word",
-//   getWordInfo
-// );
-//68c81f9b-028f-4b22-82ae-8ee40ce43404
-//
 
 // Becasue of browser router, you need the below lines.
 // const path = require("path");

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
 import { setCart, setStock } from "../../ducks/ShopReducer";
 import "./Cart.css";
 

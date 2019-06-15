@@ -24,6 +24,16 @@ class Library extends Component {
     });
   }
 
+  deleteTemplate = (story, user) => {
+    axios.delete(`/api/library/${user}?story=${story}`).then(res => {
+      console.log(res.data);
+      this.setState({
+        ...this.state,
+        library: res.data
+      });
+    });
+  };
+
   getSingleTemplate = id => {
     console.log(typeof id);
     axios.get(`/api/library/single/${id}`).then(res => {
@@ -38,14 +48,22 @@ class Library extends Component {
     console.log(this.state.library);
     const { library } = this.state;
     let mappedLibrary = library.map((e, index) => {
+      const { title, story_id } = e;
+      const { user_id } = this.props.user.user;
       return (
         <div key={index}>
           <NavLink to="/reqs">
-            <button onClick={() => this.getSingleTemplate(e.story_id)}>
-              {e.title}
+            <button onClick={() => this.getSingleTemplate(story_id)}>
+              {title}
             </button>
           </NavLink>
-          {/* {!e.} */}
+          {story_id <= 4 ? (
+            []
+          ) : (
+            <button onClick={() => this.deleteTemplate(story_id, user_id)}>
+              X
+            </button>
+          )}
         </div>
       );
     });

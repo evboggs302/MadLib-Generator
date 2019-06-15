@@ -41,7 +41,13 @@ module.exports = {
       .catch(error => console.log(error));
   },
   deleteTemplate: (req, res, next) => {
-    const {} = req.body;
+    const { user } = req.params;
+    const { story } = req.query;
     const db = req.app.get("db");
+    db.delete_template([story, user])
+      .then(library => {
+        res.status(200).send(library);
+      })
+      .catch(err => console.log(err));
   }
 };
