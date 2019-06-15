@@ -1,8 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-
-const io = require("socket.io")();
+const server = require("http").createServer(app);
+const io = require("socket.io")(server);
 const massive = require("massive");
 const session = require("express-session");
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
@@ -37,15 +37,7 @@ const {
 app.use(express.json());
 // app.use(express.static(__dirname + "/../build"));
 
-io.on("connection", client => {
-  client.on("subscribeToTimer", interval => {
-    console.log("client is subscribing to timer with interval ", interval);
-    setInterval(() => {
-      client.emit("timer", new Date());
-    }, interval);
-  });
-});
-
+//
 app.use(
   session({
     saveUninitialized: false,
@@ -61,8 +53,6 @@ massive(CONNECTION_STRING).then(db => {
   app.set("db", db);
   console.log("db is connected");
 });
-
-//
 
 // auth EndPoints
 app.post("/api/login", login);
@@ -91,11 +81,18 @@ app.post("/api/shopping/cart/:id", addToCart);
 app.put("/api/shoppingcart/:id", removeFromCart);
 app.delete("/api/shop/cart/:id", deleteCart);
 
-// community EndPoints
-// app.get("/api/community", community);
-
-// app.get('https://randomuser.me/api/portraits/med/lego/:id.jpg', profilePicToSession);
-//  id = Math.floor(Math.random() * 10) + 1}.jpg
+// SOCKET.IO community EndPoints
+io.on("connection", socket => {
+  console.log("socket hit", socket.id);
+  socket.on("get comm", () => {
+    const db = app.get("db");
+    db.get_all_community().then(data => {
+      console.log(data);
+      io.emit("shared data", { data });
+    });
+  });
+  socket.on("disconnect", () => console.log("Client disconnected"));
+});
 
 // Becasue of browser router, you need the below lines.
 // const path = require("path");
@@ -103,8 +100,6 @@ app.delete("/api/shop/cart/:id", deleteCart);
 //   res.sendFile(path.join(__dirname, "/../build/index.html"));
 // });
 
-const port = 8000;
-io.listen(port);
-console.log(`SOCKET on port: ${port}`);
-
-app.listen(SERVER_PORT, () => console.log(`SERVER on 💩 port: ${SERVER_PORT}`));
+server.listen(SERVER_PORT, () =>
+  console.log(`SERVER on 💩 port: ${SERVER_PORT}`)
+);

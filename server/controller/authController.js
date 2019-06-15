@@ -3,7 +3,7 @@ const saltRounds = 12;
 
 module.exports = {
   login: (req, res, next) => {
-    const { username, password } = req.body;
+    const { username, password, picture } = req.body;
     const db = req.app.get("db");
     db.check_existing_users(username).then(found => {
       if (!found[0]) {
@@ -12,7 +12,7 @@ module.exports = {
         bcrypt.compare(password, found[0].password).then(matched => {
           if (matched) {
             const { username, email, user_id, call_name } = found[0];
-            req.session.user = { username, email, user_id, call_name };
+            req.session.user = { username, email, user_id, call_name, picture };
             res.status(200).send(req.session.user);
           } else {
             res.status(500).send("Incorrect username/password");

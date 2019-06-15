@@ -22,16 +22,20 @@ class Header extends Component {
 
   componentDidMount = () => {
     axios.get("/api/user").then(res => {
+      console.log(res.data);
       this.props.setUser(res.data);
     });
   };
 
   login = () => {
     const { username, password } = this.state;
+    const picNumber = Math.floor(Math.random() * 9) + 1;
+    const picture = `https://randomuser.me/api/portraits/med/lego/${picNumber}.jpg`;
     axios
-      .post("/api/login", { username, password })
-      .then(res => {
-        this.props.setUser(res.data);
+      .post("/api/login", { username, password, picture })
+      .then(user => {
+        console.log(user);
+        this.props.setUser(user.data);
       })
       .catch(err => {
         console.log(err);
@@ -48,7 +52,6 @@ class Header extends Component {
   render() {
     const { username, password } = this.state;
     const { user } = this.props.user;
-    const picNumber = Math.floor(Math.random() * 10) + 1;
     return (
       <header className="main-header">
         <div>
@@ -89,10 +92,7 @@ class Header extends Component {
           <div>
             <div>
               <div>{user.username}</div>
-              <img
-                src={`https://randomuser.me/api/portraits/med/lego/${picNumber}.jpg`}
-                alt=""
-              />
+              <img src={`${user.picture}`} alt="" />
             </div>
             <div>
               <NavLink to="/">
