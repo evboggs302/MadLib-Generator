@@ -25,7 +25,6 @@ const {
   saveTemplate,
   deleteTemplate
 } = require("./controller/libraryController");
-// const { getProfilePic } = require("./controller/apiController");
 const {
   getAllItems,
   getCart,
