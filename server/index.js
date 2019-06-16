@@ -83,11 +83,10 @@ app.delete("/api/shop/cart/:id", deleteCart);
 
 // SOCKET.IO community EndPoints
 io.on("connection", socket => {
-  console.log("socket hit", socket.id);
+  console.log("socket hit");
   socket.on("get comm", () => {
     const db = app.get("db");
-    db.get_all_community().then(data => {
-      console.log("response form DB:", data);
+    db.shared_community().then(data => {
       io.emit("shared data", data);
     });
   });

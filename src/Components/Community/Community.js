@@ -10,7 +10,7 @@ class Community extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: null
+      items: []
     };
 
     socket.emit("get comm", getRequest => {
@@ -18,7 +18,6 @@ class Community extends Component {
     });
 
     socket.on("shared data", data => {
-      console.log(data);
       this.setState({
         items: data
       });
@@ -30,7 +29,9 @@ class Community extends Component {
   }
 
   componentDidMount = () => {
-    this.getCommunity();
+    setInterval(() => {
+      this.getCommunity();
+    }, 3000);
   };
 
   componentWillUnmount = () => {
@@ -38,13 +39,28 @@ class Community extends Component {
   };
 
   getCommunity = () => {
-    socket.emit("new message");
+    socket.emit("get comm");
   };
 
   render() {
-    // const { items } = this.state;
-    // const mappedItems = items.map();
-    console.log(this.state);
+    const { items } = this.state;
+    const mappedItems = items.map((e, index) => {
+      const { to_char, title, story, user_id, username } = e;
+      const date = to_char;
+      return (
+        <div key={index}>
+          <h1>{title}</h1>
+          <div key={user_id}>
+            <div>{story}</div>
+            <div>
+              <div>{date}</div>
+              <div>{`@${username}`}</div>
+            </div>
+          </div>
+          <br />
+        </div>
+      );
+    });
     return (
       <div>
         <h1>Community will be using sockets</h1>
@@ -62,7 +78,7 @@ class Community extends Component {
         <div>
           <span>
             Insert live feed here
-            {/* {mappedItems} */}
+            {mappedItems}
           </span>
         </div>
       </div>

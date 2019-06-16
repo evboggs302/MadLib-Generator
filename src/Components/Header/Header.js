@@ -22,7 +22,6 @@ class Header extends Component {
 
   componentDidMount = () => {
     axios.get("/api/user").then(res => {
-      console.log(res.data);
       this.props.setUser(res.data);
     });
   };
@@ -34,7 +33,6 @@ class Header extends Component {
     axios
       .post("/api/login", { username, password, picture })
       .then(user => {
-        console.log(user);
         this.props.setUser(user.data);
       })
       .catch(err => {
