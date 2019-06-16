@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const server = require("http").createServer(app);
+const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const massive = require("massive");
 const session = require("express-session");
@@ -87,11 +87,13 @@ io.on("connection", socket => {
   socket.on("get comm", () => {
     const db = app.get("db");
     db.get_all_community().then(data => {
-      console.log(data);
-      io.emit("shared data", { data });
+      console.log("response form DB:", data);
+      io.emit("shared data", data);
     });
   });
-  socket.on("disconnect", () => console.log("Client disconnected"));
+  socket.on("disconnect", () => {
+    console.log("Disconnected");
+  });
 });
 
 // Becasue of browser router, you need the below lines.
