@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import io from "socket.io-client";
 import { NavLink } from "react-router-dom";
 import { setHistory } from "../../ducks/HistoryReducer";
+
+const socket = io.connect(`http://localhost:19711/`);
 
 class History extends Component {
   componentDidMount() {
@@ -17,6 +20,7 @@ class History extends Component {
         })
         .then(res => {
           this.props.setHistory(res.data);
+          socket.emit("get comm");
         })
         .catch(err => {
           alert(
@@ -30,6 +34,7 @@ class History extends Component {
         })
         .then(res => {
           this.props.setHistory(res.data);
+          socket.emit("get comm");
         })
         .catch(err => {
           alert(

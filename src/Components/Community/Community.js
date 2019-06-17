@@ -29,9 +29,7 @@ class Community extends Component {
   }
 
   componentDidMount = () => {
-    setInterval(() => {
-      this.getCommunity();
-    }, 3000);
+    this.getCommunity();
   };
 
   componentWillUnmount = () => {
