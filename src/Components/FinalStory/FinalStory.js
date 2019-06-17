@@ -47,17 +47,45 @@ class Story extends Component {
     this.props.setFinal(finalStory.join(" "));
   };
 
+  sendEmail = (name, email, title, message) => {
+    console.log(name, email, message);
+    axios
+      .post("/api/send", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: {
+          name: name,
+          email: email,
+          title: title,
+          message: message
+        }
+      })
+      .then(res => {
+        console.log(res);
+        res.json();
+      })
+      .then(res => {
+        console.log("here is the response: ", res);
+      })
+      .catch(err => {
+        console.error("here is the error: ", err);
+      });
+  };
+
   render() {
     console.log(this.props);
     const { story } = this.props;
+    const { final, title } = this.props.story;
     const { user } = this.props.user;
+    const { call_name, email } = this.props.user.user;
     return (
       <div>
         <p>{story.final}</p>
         <br />
         <div>
-          <button>Text</button>
-          <button>Email</button>
           {!user ? (
             []
           ) : (
@@ -65,7 +93,14 @@ class Story extends Component {
               <NavLink to="/">
                 <button onClick={this.saveToUserHistory}>Save</button>
               </NavLink>
-              <NavLink to="/">
+              <NavLink>
+                <button
+                  onClick={() => this.sendEmail(call_name, email, title, final)}
+                >
+                  Email
+                </button>
+              </NavLink>
+              <NavLink to="/library">
                 <button onClick={this.saveAndShare}>{`Save & Share`}</button>
               </NavLink>
             </div>

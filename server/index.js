@@ -3,9 +3,16 @@ const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
+const nodemailer = require("nodemailer");
 const massive = require("massive");
 const session = require("express-session");
-const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
+const {
+  SERVER_PORT,
+  CONNECTION_STRING,
+  SESSION_SECRET,
+  EMAIL,
+  EMAIL_PASSWORD
+} = process.env;
 const {
   login,
   register,
@@ -92,6 +99,32 @@ io.on("connection", socket => {
   });
   socket.on("disconnect", () => {
     console.log("Disconnected");
+  });
+});
+
+// NODEMAILER EndPoints
+app.post("/api/send", (req, res, next) => {
+  const { name, email, title, message } = req.body.body;
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: EMAIL,
+      pass: EMAIL_PASSWORD
+    }
+  });
+  const mailOptions = {
+    from: `${EMAIL}`,
+    to: `${email}`,
+    subject: `${title} by ${name}`,
+    text: `${message}`,
+    replyTo: `${EMAIL}`
+  };
+  transporter.sendMail(mailOptions, (err, res) => {
+    if (err) {
+      console.error("there was an error: ", err);
+    } else {
+      console.log("here is the res: ", res);
+    }
   });
 });
 
