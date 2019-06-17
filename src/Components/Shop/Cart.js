@@ -1,14 +1,36 @@
 import React, { Component } from "react";
+import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
 import axios from "axios";
 import { setCart, setStock } from "../../ducks/ShopReducer";
 import "./Cart.css";
 
 class Cart extends Component {
-  componentWillMount = () => {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      complete: false,
+      final: 0
+    };
+    // this.submit = this.submit.bind(this);
+  }
 
-  // when Stripe is completed
-  //updateQuant = () => {};
+  componentDidMount = () => {
+    this.getTotal();
+  };
+
+  getTotal = () => {
+    const { cart } = this.props.shop;
+    let cost = 0;
+    cart.map(e => {
+      const { prod_price } = e;
+      var price = +prod_price;
+      return (cost += price);
+    });
+    this.setState({
+      final: cost
+    });
+  };
 
   removeFromCart = name => {
     const { user_id } = this.props.user.user;
@@ -30,7 +52,28 @@ class Cart extends Component {
       .catch(err => console.log(err));
   };
 
+  // async submit(ev) {
+  //   // User clicked submit
+  //   let { token } = await this.props.stripe.createToken({ name: "Name" });
+  //   let response = await axios.post("/api/charge", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "text/plain" },
+  //     body: token.id
+  //   });
+
+  //   if (response.ok) {
+  //     this.setState({ complete: true });
+  //     console.log("Purchase Complete!");
+  //   }
+  // }
+  onToken = token => {
+    console.log(token);
+    const { final } = this.state;
+    axios.post("/api/charge", { token, final });
+  };
+
   render() {
+    console.log(this.state);
     console.log(this.props.shop);
     const { cart } = this.props.shop;
     const mappedCart = cart.map(e => {
@@ -52,16 +95,6 @@ class Cart extends Component {
             <button onClick={() => this.removeFromCart(prod_name)}>
               Remove From Cart
             </button>
-            <div>
-              Quanity
-              <select>
-                <option>{1}</option>
-                <option>{2}</option>
-                <option>{3}</option>
-                <option>{4}</option>
-                <option>{5}</option>
-              </select>
-            </div>
           </div>
         </div>
       );
@@ -70,7 +103,6 @@ class Cart extends Component {
       <div>
         <div>
           <h1>Cart</h1>
-          <button>Checkout</button>
         </div>
         {!cart.length ? (
           <div>
@@ -81,6 +113,15 @@ class Cart extends Component {
           </div>
         ) : (
           <div>
+            <div>
+              <StripeCheckout
+                token={this.onToken}
+                stripeKey="pk_test_k7TYhKQj3micGckl753j3C2b00ZnyhVPbe"
+                amount={100 * this.state.final}
+                billingAddress
+                shippingAddress
+              />
+            </div>
             {mappedCart}
             <button onClick={this.deleteCartContents}>
               remove ALL items from cart
