@@ -6,39 +6,10 @@ import { NavLink } from "react-router-dom";
 import "./Header.css";
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: ""
-    };
-  }
-
-  universalChangeHandler = (prop, value) => {
-    this.setState({
-      [prop]: value
-    });
-  };
-
   componentDidMount = () => {
     axios.get("/api/user").then(res => {
       this.props.setUser(res.data);
     });
-  };
-
-  login = () => {
-    const { username, password } = this.state;
-    const picNumber = Math.floor(Math.random() * 9) + 1;
-    const picture = `https://randomuser.me/api/portraits/med/lego/${picNumber}.jpg`;
-    axios
-      .post("/api/login", { username, password, picture })
-      .then(user => {
-        this.props.setUser(user.data);
-      })
-      .catch(err => {
-        console.log(err);
-        alert("Incorrect username/password");
-      });
   };
 
   logout = () => {
@@ -48,7 +19,7 @@ class Header extends Component {
   };
 
   render() {
-    const { username, password } = this.state;
+    console.log(this.props);
     const { user } = this.props.user;
     return (
       <header className="main-header">
@@ -58,30 +29,8 @@ class Header extends Component {
         {!user ? (
           <div>
             <div>
-              Username:
-              <input
-                onChange={e =>
-                  this.universalChangeHandler(e.target.name, e.target.value)
-                }
-                value={username}
-                name="username"
-              />
+              <NavLink to="/login">Login</NavLink>
             </div>
-            <div>
-              Password:
-              <input
-                onChange={e =>
-                  this.universalChangeHandler(e.target.name, e.target.value)
-                }
-                type="password"
-                value={password}
-                name="password"
-              />
-              <NavLink to="/">
-                <button onClick={this.login}>Login</button>
-              </NavLink>
-            </div>
-
             <div>
               <NavLink to="/register">Register</NavLink>
             </div>

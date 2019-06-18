@@ -8,8 +8,8 @@ import "./Shop.css";
 class Shop extends Component {
   componentDidMount = () => {
     const { user } = this.props.user;
-    const { user_id } = this.props.user.user;
-    if (user) {
+    if (user !== "") {
+      const { user_id } = this.props.user.user;
       this.getCartItems(user_id);
     }
   };

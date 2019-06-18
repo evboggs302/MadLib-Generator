@@ -22,7 +22,7 @@ module.exports = {
     });
   },
   register: (req, res, next) => {
-    const { name, username, email, password } = req.body;
+    const { name, username, email, password, picture } = req.body;
     const db = req.app.get("db");
     db.check_existing_users(username).then(found => {
       if (found.length) {

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setUser } from "../../../ducks/UserReducer";
+import { setUser } from "../../ducks/UserReducer";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import "./Register.css";
 
 class Register extends Component {
   constructor(props) {
@@ -23,19 +22,22 @@ class Register extends Component {
   };
 
   register = () => {
+    const picNumber = Math.floor(Math.random() * 9) + 1;
+    const picture = `https://randomuser.me/api/portraits/med/lego/${picNumber}.jpg`;
     const { name, username, email, password } = this.state;
     axios
-      .post("/api/register", { name, username, email, password })
+      .post("/api/register", { name, username, email, password, picture })
       .then(res => {
-        this.props.setUser(res.data);
-      });
+        console.log(res.data);
+        const { username, email, user_id } = res.data;
+        this.props.setUser({ username, email, user_id, picture });
+      })
+      .catch(err => console.log(err));
   };
 
   render() {
-    console.log(this.props);
     console.log(this.state);
     const { name, username, password, email } = this.state;
-    // const { user } = this.props;
     return (
       <div>
         <div>

@@ -71,10 +71,13 @@ class CreateSelect extends Component {
         `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=68c81f9b-028f-4b22-82ae-8ee40ce43404`
       )
       .then(res => {
+        console.log(res);
         let arr = res.data;
         let types = [];
         for (let i = 0; i < arr.length; i++) {
-          types.push(arr[i].fl);
+          if (arr[i].fl) {
+            types.push(arr[i].fl);
+          }
         }
         const uniqueVals = new Set(types);
         const partsOfSpeech = ["", ...uniqueVals];
