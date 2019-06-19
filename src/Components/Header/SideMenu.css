@@ -34,8 +34,9 @@
 }
 
 .logout {
-  color: white;
-  background-color: none;
+  color: orange;
+  background: none;
+  border: none;
   text-decoration: none;
   font-size: 14px;
 }

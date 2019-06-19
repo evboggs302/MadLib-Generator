@@ -34,57 +34,71 @@ class Home extends Component {
   render() {
     const { user } = this.props.user;
     return (
-      <div>
+      <div className="home_container">
         {!user ? (
-          <div>
+          <div className="home_container">
             <h2>Words, Bruh. Words!!</h2>
             <p>
-              {" "}
-              Welcome to the place where the words are made up, and the stories
-              don't matter. If you'd like to enjoy, and possibly create, more
-              labs on this site, please login above. If you don't want to login,
-              I understand. I too like to live life on the edge on occasion.
-              Simply click the "Random" button below to get started.
+              {"  "}Welcome to the place where the words are made up, and the
+              stories don't matter. If you'd like to enjoy, and possibly create,
+              more labs on this site, please login above. If you don't want to
+              login, I understand. I too like to live life on the edge on
+              occasion. Simply click the "Random" button below to get started.
             </p>
             <div>
               {this.renderRedirect()}
-              <button onClick={this.getRandomTemplate}>Random</button>
+              <button
+                className="home_page_buttton"
+                onClick={this.getRandomTemplate}
+              >
+                <span>Random</span>
+              </button>
             </div>
           </div>
         ) : (
-          <div>
-            <h2>Words, {user.call_name}. Words!!</h2>
+          <div className="home_container">
+            <h2>
+              Words,<span>{user.call_name}.</span> Words!!
+            </h2>
             <p>
-              {" "}
-              Welcome back to the place where the words are made up, and the
-              stories don't matter! If you'd like to enjoy already created Mad
-              Libs, click the below button to go to the "Library." If you'd like
-              to create your own Mad Lib, click "Create." Want to see the saved
-              stories you've previously completed? Click "History". If you don't
-              feel like creating anything, but still want to laugh, hop on over
-              to our "Community" page. You'll be able to see all the shenanigans
-              others have been up to. If you're just feeling lucky, simply click
-              "Random" to get started!
+              {"  "}Welcome back to the place where the words are made up, and
+              the stories don't matter! If you'd like to enjoy already created
+              Mad Libs, click the below button to go to the "Library." If you'd
+              like to create your own Mad Lib, click "Create." Want to see the
+              saved stories you've previously completed? Click "History". If you
+              don't feel like creating anything, but still want to laugh, hop on
+              over to our "Community" page. You'll be able to see all the
+              shenanigans others have been up to. If you're just feeling lucky,
+              simply click "Random" to get started!
             </p>
-            <div>
-              <NavLink to="/reqs">
-                <button onClick={this.getRandomTemplate}>Random</button>
-              </NavLink>
-
-              <NavLink to="/library">
-                <button>Library</button>
-              </NavLink>
-
-              <NavLink to="/create">
-                <button>Create</button>
-              </NavLink>
-
+            <div className="home_page_button_container">
               <NavLink to="/history">
-                <button>History</button>
+                <button className="home_page_buttton">
+                  <span>History</span>
+                </button>
               </NavLink>
-
               <NavLink to="/community">
-                <button>Community</button>
+                <button className="home_page_buttton">
+                  <span>Community</span>
+                </button>
+              </NavLink>
+              <NavLink to="/create">
+                <button className="home_page_buttton">
+                  <span>Create</span>
+                </button>
+              </NavLink>
+              <NavLink to="/reqs">
+                <button
+                  className="home_page_buttton"
+                  onClick={this.getRandomTemplate}
+                >
+                  <span>Random</span>
+                </button>
+              </NavLink>
+              <NavLink to="/library">
+                <button className="home_page_buttton">
+                  <span>Library</span>
+                </button>
               </NavLink>
             </div>
           </div>

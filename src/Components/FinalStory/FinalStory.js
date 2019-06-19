@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setFinal } from "../../ducks/StoryReducer";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import "./FinalStory.css";
 
 class Story extends Component {
   constructor(props) {
@@ -93,13 +94,11 @@ class Story extends Component {
               <NavLink to="/">
                 <button onClick={this.saveToUserHistory}>Save</button>
               </NavLink>
-              <NavLink>
-                <button
-                  onClick={() => this.sendEmail(call_name, email, title, final)}
-                >
-                  Email
-                </button>
-              </NavLink>
+              <button
+                onClick={() => this.sendEmail(call_name, email, title, final)}
+              >
+                Email
+              </button>
               <NavLink to="/library">
                 <button onClick={this.saveAndShare}>{`Save & Share`}</button>
               </NavLink>

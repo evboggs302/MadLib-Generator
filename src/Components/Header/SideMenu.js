@@ -6,9 +6,6 @@ import { setUser } from "../../ducks/UserReducer";
 import axios from "axios";
 
 class SideMenu extends Component {
-  constructor(props) {
-    super(props);
-  }
   logout = () => {
     axios.get("/api/logout").then(res => {
       this.props.setUser(null);

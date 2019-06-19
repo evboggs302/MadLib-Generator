@@ -2,7 +2,7 @@ header {
   display: flex;
   background-color: black;
   color: goldenrod;
-  height: 80px;
+  height: 82px;
   max-width: 100vw;
   align-items: center;
   justify-content: space-around;
@@ -17,6 +17,10 @@ header {
 }
 
 .title {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding-left: 10px;
   font-size: 27px;
 }
 
@@ -32,18 +36,16 @@ header {
 }
 
 .user a,
-.logi_reg a,
-.logoutHead {
+.logi_reg a {
   text-decoration: none;
   color: white;
 }
-
-.logi_reg a:hover,
-.logoutHead:hover,
-.home_shop a:hover,
-.home_shop a:active,
-.logi_reg a:active {
-  color: rgb(51, 51, 194);
+.logoutHead {
+  font-size: 14px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  color: white;
 }
 
 .user {
@@ -56,10 +58,6 @@ header {
   align-items: center;
   justify-content: space-around;
   margin-left: 0;
-}
-
-.logoutHead {
-  font-size: 14px;
 }
 
 .info {
@@ -75,7 +73,7 @@ header {
 }
 
 .pic {
-  width: 50px;
+  width: 78px;
   border-radius: 50%;
 }
 
@@ -95,5 +93,11 @@ header {
 @media (min-width: 540px) {
   .info div {
     display: flex;
+  }
+}
+
+@media (max-width: 463px) {
+  .user div {
+    display: none;
   }
 }
