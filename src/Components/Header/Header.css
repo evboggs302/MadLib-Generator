@@ -1,0 +1,59 @@
+header {
+  display: flex;
+  background-color: black;
+  color: goldenrod;
+  height: 80px;
+  max-width: 100vw;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.container {
+  display: flex;
+  height: 60px;
+  width: 50vw;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.title {
+  font-size: 27px;
+}
+
+.logi_reg,
+.home_shop {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  font-size: 15px;
+  text-decoration: none;
+  color: white;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.home_shop a {
+  text-decoration: none;
+  color: white;
+}
+
+.logi_reg a {
+  text-decoration: none;
+  color: white;
+}
+.logi_reg a:hover,
+.home_shop a:hover,
+.home_shop a:active,
+.logi_reg a:active {
+  color: rgb(51, 51, 194);
+}
+
+@media (max-width: 765px) {
+  .logi_reg,
+  .home_shop {
+    display: none;
+  }
+  .container {
+    justify-content: flex-end;
+  }
+}
