@@ -26,31 +26,42 @@ class Header extends Component {
       <header>
         <h3 className="title">The MadLib-Project</h3>
         <div className="container">
-          <div className="home_shop">
-            <NavLink exact to="/">
-              Home
-            </NavLink>
-            <NavLink to="/shop">Shop</NavLink>
-          </div>
           {!user ? (
             <nav className="logi_reg">
-              <NavLink to="/login">Login</NavLink>
+              <NavLink className="home" exact to="/">
+                Home
+              </NavLink>
+              <NavLink className="shop" to="/shop">
+                Shop
+              </NavLink>
+              <NavLink className="login" to="/login">
+                Login
+              </NavLink>
 
-              <NavLink to="/register">Register</NavLink>
+              <NavLink className="regi" to="/register">
+                Register
+              </NavLink>
             </nav>
           ) : (
-            <nav>
-              <div className="user">
-                <div>{user.username}</div>
-                <img src={`${user.picture}`} alt="" />
-              </div>
-              <div className="logout">
-                <NavLink to="/">
-                  <button type="submit" onClick={this.logout}>
-                    Logout
-                  </button>
-                </NavLink>
-              </div>
+            <nav className="user">
+              <NavLink className="home" exact to="/">
+                Home
+              </NavLink>
+              <NavLink className="shop" to="/shop">
+                Shop
+              </NavLink>
+              <NavLink to="/">
+                <button
+                  className="logoutHead"
+                  type="submit"
+                  onClick={this.logout}
+                >
+                  Logout
+                </button>
+              </NavLink>
+
+              <div>{`@${user.username}`}</div>
+              <img className="pic" src={`${user.picture}`} alt="" />
             </nav>
           )}
           <MenuButton click={this.props.menuToggler} className="menu" />

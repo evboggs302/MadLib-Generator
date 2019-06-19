@@ -33,6 +33,13 @@
   text-decoration: none;
 }
 
+.logout {
+  color: white;
+  background-color: none;
+  text-decoration: none;
+  font-size: 14px;
+}
+
 @media (min-width: 766px) {
   .sideMenu {
     display: none;

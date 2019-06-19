@@ -20,8 +20,7 @@ header {
   font-size: 27px;
 }
 
-.logi_reg,
-.home_shop {
+.logi_reg {
   display: flex;
   height: 100%;
   width: 100%;
@@ -32,28 +31,69 @@ header {
   justify-content: space-around;
 }
 
-.home_shop a {
+.user a,
+.logi_reg a,
+.logoutHead {
   text-decoration: none;
   color: white;
 }
 
-.logi_reg a {
-  text-decoration: none;
-  color: white;
-}
 .logi_reg a:hover,
+.logoutHead:hover,
 .home_shop a:hover,
 .home_shop a:active,
 .logi_reg a:active {
   color: rgb(51, 51, 194);
 }
 
-@media (max-width: 765px) {
-  .logi_reg,
-  .home_shop {
+.user {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  font-size: 15px;
+  text-decoration: none;
+  color: white;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 0;
+}
+
+.logoutHead {
+  font-size: 14px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 90%;
+}
+
+.info div {
+  display: none;
+}
+
+.pic {
+  width: 50px;
+  border-radius: 50%;
+}
+
+@media (max-width: 766px) {
+  .home,
+  .shop,
+  .login,
+  .regi,
+  .logoutHead {
     display: none;
   }
   .container {
     justify-content: flex-end;
+  }
+}
+
+@media (min-width: 540px) {
+  .info div {
+    display: flex;
   }
 }
