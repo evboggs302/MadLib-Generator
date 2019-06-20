@@ -3,6 +3,18 @@ import { connect } from "react-redux";
 import { setFinal } from "../../ducks/StoryReducer";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import {
+  FaRegEnvelope,
+  FaRegSave,
+  FaTrashAlt,
+  FaRegPlusSquare,
+  FaBookOpen,
+  FaHome,
+  FaRegCalendar,
+  FaRegListAlt,
+  FaReact,
+  FaRandom
+} from "react-icons/fa";
 import "./FinalStory.css";
 
 class Story extends Component {
@@ -82,25 +94,52 @@ class Story extends Component {
     const { final, title } = this.props.story;
     const { user } = this.props.user;
     const { call_name, email } = this.props.user.user;
+
     return (
-      <div>
+      <div className="story_bucket">
         <p>{story.final}</p>
         <br />
-        <div>
+        <div className="storyinfo">
           {!user ? (
-            []
+            <div>
+              <NavLink to="/">
+                <button className="final home">
+                  <span>
+                    Home <FaHome />
+                  </span>
+                </button>
+              </NavLink>
+            </div>
           ) : (
             <div>
               <NavLink to="/">
-                <button onClick={this.saveToUserHistory}>Save</button>
+                <button className="final save" onClick={this.saveToUserHistory}>
+                  <span>
+                    Save <FaRegSave />
+                  </span>
+                </button>
               </NavLink>
               <button
+                className="final email"
                 onClick={() => this.sendEmail(call_name, email, title, final)}
               >
-                Email
+                <span>
+                  Email <FaRegEnvelope />
+                </span>
               </button>
               <NavLink to="/library">
-                <button onClick={this.saveAndShare}>{`Save & Share`}</button>
+                <button className="final share" onClick={this.saveAndShare}>
+                  <span>
+                    {`Save & Share`} <FaRegListAlt />
+                  </span>
+                </button>
+              </NavLink>
+              <NavLink to="/">
+                <button className="req home">
+                  <span>
+                    Home <FaHome />
+                  </span>
+                </button>
               </NavLink>
             </div>
           )}

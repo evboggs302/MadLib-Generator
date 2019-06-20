@@ -1,8 +1,9 @@
 .req_inputs {
   display: flex;
   margin: 0 auto;
-  width: 80vw;
+  width: 60vw;
   height: calc(100vh - 82px);
+  /* height: 100%; */
   max-width: 1500px;
   background-color: white;
   flex-direction: column;
@@ -24,8 +25,9 @@
 .req_layout {
   display: flex;
   width: 100%;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-flow: wrap;
+  background-color: white;
 }
 
 .req_values {
@@ -41,6 +43,7 @@
   padding-top: 10px;
   justify-content: space-around;
   flex-wrap: wrap-reverse;
+  background-color: white;
 }
 
 .req {
@@ -82,9 +85,11 @@ a {
 
 @media (max-width: 754px) {
   .req_button_contain {
-    height: 200px;
+    width: 100%;
+    height: 100%;
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
   }
 }
+/* @media (max-width: 754px); */

@@ -4,7 +4,18 @@ import { setStory } from "../../ducks/StoryReducer";
 import axios from "axios";
 import { NavLink, Redirect } from "react-router-dom";
 import "./Home.css";
-
+import {
+  FaRegEnvelope,
+  FaRegSave,
+  FaTrashAlt,
+  FaRegPlusSquare,
+  FaBookOpen,
+  FaHome,
+  FaRegCalendar,
+  FaRegListAlt,
+  FaReact,
+  FaRandom
+} from "react-icons/fa";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -51,7 +62,9 @@ class Home extends Component {
                 className="home_page_buttton"
                 onClick={this.getRandomTemplate}
               >
-                <span>Random</span>
+                <span>
+                  Random <FaRandom />
+                </span>
               </button>
             </div>
           </div>
@@ -74,17 +87,23 @@ class Home extends Component {
             <div className="home_page_button_container">
               <NavLink to="/history">
                 <button className="home_page_buttton">
-                  <span>History</span>
+                  <span>
+                    History <FaRegCalendar />
+                  </span>
                 </button>
               </NavLink>
               <NavLink to="/community">
                 <button className="home_page_buttton">
-                  <span>Community</span>
+                  <span>
+                    Community <FaRegListAlt />
+                  </span>
                 </button>
               </NavLink>
               <NavLink to="/create">
                 <button className="home_page_buttton">
-                  <span>Create</span>
+                  <span>
+                    Create <FaReact />
+                  </span>
                 </button>
               </NavLink>
               <NavLink to="/reqs">
@@ -92,12 +111,16 @@ class Home extends Component {
                   className="home_page_buttton"
                   onClick={this.getRandomTemplate}
                 >
-                  <span>Random</span>
+                  <span>
+                    Random <FaRandom />
+                  </span>
                 </button>
               </NavLink>
               <NavLink to="/library">
                 <button className="home_page_buttton">
-                  <span>Library</span>
+                  <span>
+                    Library <FaBookOpen />
+                  </span>
                 </button>
               </NavLink>
             </div>

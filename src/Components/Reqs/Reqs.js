@@ -3,6 +3,18 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { setFinal, fillBlanks } from "../../ducks/StoryReducer";
 import "./Reqs.css";
+import {
+  FaRegEnvelope,
+  FaRegSave,
+  FaTrashAlt,
+  FaRegPlusSquare,
+  FaBookOpen,
+  FaHome,
+  FaRegCalendar,
+  FaRegListAlt,
+  FaReact,
+  FaRandom
+} from "react-icons/fa";
 
 class Reqs extends Component {
   constructor(props) {
@@ -48,15 +60,20 @@ class Reqs extends Component {
         </p>
         <h3>{title}</h3>
         <div className="req_layout">{mappedInputs}</div>
-        <br />
         <div className="req_button_contain">
           <NavLink to="/">
-            <button className="req home">To Home</button>
+            <button className="req home">
+              <FaHome />
+              To Home
+            </button>
           </NavLink>
           {!user ? null : (
             <div>
               <NavLink to="/library">
-                <button className="req library">To Library</button>
+                <button className="req library">
+                  <FaBookOpen />
+                  To Library
+                </button>
               </NavLink>
             </div>
           )}
@@ -66,6 +83,7 @@ class Reqs extends Component {
               className="req create"
               onClick={() => this.props.fillBlanks(this.state.blanks)}
             >
+              <FaReact />
               Create Story!
             </button>
           </NavLink>
