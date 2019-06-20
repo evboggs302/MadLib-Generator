@@ -48,7 +48,7 @@ class Create extends Component {
           wrap="hard"
           required
           maxLength="1000"
-          placeholder="Start typing your story here"
+          placeholder="Start typing your story here..."
           onChange={event => this.changeHandler(event)}
         />
         {!this.state.typed ? (

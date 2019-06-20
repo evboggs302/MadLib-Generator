@@ -28,19 +28,12 @@ class Header extends Component {
         <div className="container">
           {!user ? (
             <nav className="logi_reg">
-              <NavLink className="home" exact to="/">
+              <NavLink exact to="/">
                 Home
               </NavLink>
-              <NavLink className="shop" to="/shop">
-                Shop
-              </NavLink>
-              <NavLink className="login" to="/login">
-                Login
-              </NavLink>
-
-              <NavLink className="regi" to="/register">
-                Register
-              </NavLink>
+              <NavLink to="/shop">Shop</NavLink>
+              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/register">Register</NavLink>
             </nav>
           ) : (
             <nav className="user">

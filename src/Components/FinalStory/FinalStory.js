@@ -90,14 +90,15 @@ class Story extends Component {
 
   render() {
     console.log(this.props);
-    const { story } = this.props;
+    // const { story } = this.props;
     const { final, title } = this.props.story;
     const { user } = this.props.user;
     const { call_name, email } = this.props.user.user;
 
     return (
       <div className="story_bucket">
-        <p>{story.final}</p>
+        <h2>{title}</h2>
+        <p>{final}</p>
         <br />
         <div className="storyinfo">
           {!user ? (

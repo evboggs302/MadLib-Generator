@@ -16,19 +16,21 @@ body {
 .home_container h2 {
   margin: 0 auto;
   padding: 15px;
-  font-size: 25px;
+  font-size: 27px;
 }
 
 .home_container h2 span {
   text-decoration: underline;
   font-weight: bold;
   padding-left: 8px;
+  color: red;
 }
 
 .home_container p {
   padding: 20px;
   text-indent: 30px;
   line-height: 1.4;
+  font-size: 23px;
 }
 
 .home_page_button_container {

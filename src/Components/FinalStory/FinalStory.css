@@ -8,11 +8,19 @@
   flex-direction: column;
   align-items: center;
 }
+
+.story_bucket h2 {
+  margin: 0 auto;
+  padding: 15px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
 .story_bucket p {
   padding: 20px;
   text-indent: 40px;
   line-height: 1.8;
-  font-size: 23px;
+  font-size: 21px;
 }
 
 .storyinfo div {
