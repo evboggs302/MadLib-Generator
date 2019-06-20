@@ -1,12 +1,23 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/UserReducer";
-import axios from "axios";
 import { NavLink } from "react-router-dom";
-import "./Header.css";
 import MenuButton from "./MenuButton";
+import Login from "../Auth/Login";
+import Register from "../Auth/Register";
+import Backdrop from "../Backdrop/Backdrop";
+import "./Header.css";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showLogin: false,
+      showRegister: false,
+      showOpen: false
+    };
+  }
   componentDidMount = () => {
     axios.get("/api/user").then(res => {
       this.props.setUser(res.data);
@@ -18,8 +29,28 @@ class Header extends Component {
       this.props.setUser(null);
     });
   };
+  toggleLogin = () => {
+    this.setState({
+      showLogin: !this.state.showLogin
+    });
+  };
+  toggleRegister = () => {
+    this.setState({
+      showRegister: !this.state.showRegister
+    });
+  };
+  // backdropClickHandler = () => {
+  //   this.setState({
+  //     showOpen: false
+  //   });
+  // };
 
   render() {
+    let backdrop;
+    if (this.state.sideMenuOpen) {
+      // click={this.backdropClickHandler}
+      backdrop = <Backdrop />;
+    }
     console.log(this.props);
     const { user } = this.props.user;
     return (
@@ -33,7 +64,19 @@ class Header extends Component {
               </NavLink>
               <NavLink to="/shop">Shop</NavLink>
               <NavLink to="/login">Login</NavLink>
+              {this.state.showLogin ? (
+                <Login
+                  click={this.backdropClickHandler}
+                  closePopup={this.toggleLogin}
+                />
+              ) : null}
               <NavLink to="/register">Register</NavLink>
+              {this.state.showRegister ? (
+                <Register
+                  click={this.backdropClickHandler}
+                  closePopup={this.toggleRegister}
+                />
+              ) : null}
             </nav>
           ) : (
             <nav className="user">

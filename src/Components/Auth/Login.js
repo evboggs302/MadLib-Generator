@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setUser } from "../../ducks/UserReducer";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import "./Auth.css";
 
 class Login extends Component {
   constructor(props) {
@@ -35,11 +36,11 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div className="main-header">
-        <div>
-          <h3>Mad Libs</h3>
-        </div>
-        <div>
+      <div className="page-container">
+        <div className="credentials-container">
+          <div>
+            <h3>LOGIN</h3>
+          </div>
           <div>
             Username:
             <input
@@ -60,9 +61,20 @@ class Login extends Component {
               value={password}
               name="password"
             />
-            <NavLink to="/">
-              <button onClick={this.login}>Login</button>
-            </NavLink>
+          </div>
+          <div id="logbut">
+            <div className="popbut">
+              <NavLink to="/">
+                <button id="cancel">Cancel</button>
+              </NavLink>
+            </div>
+            <div className="popbut">
+              <NavLink to="/">
+                <button id="login" onClick={this.login}>
+                  Login
+                </button>
+              </NavLink>
+            </div>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setUser } from "../../ducks/UserReducer";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import "./Auth.css";
 
 class Register extends Component {
   constructor(props) {
@@ -39,53 +40,67 @@ class Register extends Component {
     console.log(this.state);
     const { name, username, password, email } = this.state;
     return (
-      <div>
-        <div>
-          Name:
-          <input
-            onChange={e =>
-              this.universalChangeHandler(e.target.name, e.target.value)
-            }
-            value={name}
-            name="name"
-          />
-        </div>
-        <div>
-          Username:
-          <input
-            onChange={e =>
-              this.universalChangeHandler(e.target.name, e.target.value)
-            }
-            value={username}
-            name="username"
-          />
-        </div>
-        <div>
-          Email:
-          <input
-            onChange={e =>
-              this.universalChangeHandler(e.target.name, e.target.value)
-            }
-            type="email"
-            value={email}
-            name="email"
-          />
-        </div>
-        <div>
-          Password:
-          <input
-            onChange={e =>
-              this.universalChangeHandler(e.target.name, e.target.value)
-            }
-            type="password"
-            value={password}
-            name="password"
-          />
-        </div>
-        <div>
-          <NavLink to="/">
-            <button onClick={this.register}>Register</button>
-          </NavLink>
+      <div className="page-container">
+        <div className="credentials-container">
+          <div>
+            <h3>REGISTER</h3>
+          </div>
+          <div>
+            Name:
+            <input
+              onChange={e =>
+                this.universalChangeHandler(e.target.name, e.target.value)
+              }
+              value={name}
+              name="name"
+            />
+          </div>
+          <div>
+            Username:
+            <input
+              onChange={e =>
+                this.universalChangeHandler(e.target.name, e.target.value)
+              }
+              value={username}
+              name="username"
+            />
+          </div>
+          <div>
+            Email:
+            <input
+              onChange={e =>
+                this.universalChangeHandler(e.target.name, e.target.value)
+              }
+              type="email"
+              value={email}
+              name="email"
+            />
+          </div>
+          <div>
+            Password:
+            <input
+              onChange={e =>
+                this.universalChangeHandler(e.target.name, e.target.value)
+              }
+              type="password"
+              value={password}
+              name="password"
+            />
+          </div>
+          <div id="logbut">
+            <div className="popbut">
+              <NavLink to="/">
+                <button id="cancel">Cancel</button>
+              </NavLink>
+            </div>
+            <div className="popbut">
+              <NavLink to="/">
+                <button id="register" onClick={this.register}>
+                  Register
+                </button>
+              </NavLink>
+            </div>
+          </div>
         </div>
       </div>
     );

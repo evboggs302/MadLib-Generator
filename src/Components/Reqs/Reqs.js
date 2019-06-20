@@ -62,7 +62,7 @@ class Reqs extends Component {
         <div className="req_layout">{mappedInputs}</div>
         <div className="req_button_contain">
           <NavLink to="/">
-            <button className="req home">
+            <button className="req homeb">
               <FaHome />
               To Home
             </button>

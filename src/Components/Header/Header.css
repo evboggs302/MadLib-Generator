@@ -77,11 +77,10 @@ header {
   border-radius: 50%;
 }
 
-@media (max-width: 766px) {
+@media (max-width: 765px) {
   .home,
   .shop,
-  .login,
-  .regi,
+  .logi_reg,
   .logoutHead {
     display: none;
   }

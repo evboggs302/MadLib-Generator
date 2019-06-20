@@ -14,10 +14,10 @@ import CreateSelect from "./Components/Create/CreateSelect";
 import Review from "./Components/Create/Review";
 import History from "./Components/History/History";
 import CatchAll from "./Components/CatchAll/CatchAll";
-import { Switch, Route } from "react-router-dom";
-import "./App.css";
+import { Switch, Route, NavLink } from "react-router-dom";
 import SideMenu from "./Components/Header/SideMenu";
 import Backdrop from "./Components/Backdrop/Backdrop";
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
