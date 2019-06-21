@@ -138,7 +138,7 @@ values
       ' perched atop yer ',
       '. Aye, now ye be a real pirate!'
       ]),
-('How to Date the Coolest Guy/Girl in School', ARRAY ['plural noun',
+('How to Date the Coolest Person in School', ARRAY ['plural noun',
       'adverb',
       'verb',
       'article of clothing',

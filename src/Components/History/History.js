@@ -4,6 +4,7 @@ import axios from "axios";
 import io from "socket.io-client";
 import { NavLink } from "react-router-dom";
 import { setHistory } from "../../ducks/HistoryReducer";
+import "../History/Hist_Comm.css";
 
 const socket = io.connect(`http://localhost:19711/`);
 
@@ -74,20 +75,21 @@ class History extends Component {
       const { title, story, to_char, history_id, share, user_id } = e;
       let date = to_char;
       return (
-        <div key={history_id}>
-          <br />
-          <div>
+        <div id="box" key={history_id}>
+          <div className="histHead">
             <h4>{title}</h4>
             <div>
-              <NavLink to="/history">
-                <button
-                  onClick={e => {
-                    return this.deleteHistory(history_id);
-                  }}
-                >
-                  Delete
-                </button>
-              </NavLink>
+              <div>
+                <NavLink to="/history">
+                  <button
+                    onClick={e => {
+                      return this.deleteHistory(history_id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </NavLink>
+              </div>
               {share === true ? (
                 <button
                   onClick={e => {
@@ -107,7 +109,7 @@ class History extends Component {
               )}
             </div>
           </div>
-          <div>
+          <div id="storyinfo">
             <p>{story}</p>
             <div>{date}</div>
           </div>
@@ -115,13 +117,15 @@ class History extends Component {
       );
     });
     return (
-      <div>
-        <h2>Your History</h2>
+      <div className="outerBox">
+        <h1>Your History</h1>
         <span>{mappedHistory}</span>
-        <div>
-          <NavLink to="/">
-            <button>Go Back Home</button>
-          </NavLink>
+        <div className="innerbox">
+          <div id="hcBut">
+            <NavLink to="/">
+              <button id="hcHome">Go Back Home</button>
+            </NavLink>
+          </div>
         </div>
       </div>
     );

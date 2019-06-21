@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import io from "socket.io-client";
 import { NavLink } from "react-router-dom";
+import "../History/Hist_Comm.css";
 
 const socket = io.connect(`http://localhost:19711/`);
 
@@ -45,38 +46,38 @@ class Community extends Component {
       const { to_char, title, story, user_id, username } = e;
       const date = to_char;
       return (
-        <div key={index}>
-          <h1>{title}</h1>
+        <div id="box" key={index}>
+          <h3>{title}</h3>
           <div key={user_id}>
             <div>{story}</div>
-            <div>
+            <div id="storyinfo">
               <div>{date}</div>
               <div>{`@${username}`}</div>
             </div>
           </div>
-          <br />
         </div>
       );
     });
     return (
-      <div>
-        <h1>Community will be using sockets</h1>
-        <div>
-          <NavLink to="/">
-            <button>Home</button>
-          </NavLink>
-          <NavLink to="/library">
-            <button>Library</button>
-          </NavLink>
-          <NavLink to="/history">
-            <button>History</button>
-          </NavLink>
-        </div>
-        <div>
-          <span>
-            Insert live feed here
-            {mappedItems}
-          </span>
+      <div className="outerBox">
+        <h1>LIVE Updates</h1>
+        <span>{mappedItems}</span>
+        <div className="innerbox">
+          <div id="hcBut">
+            <NavLink to="/">
+              <button id="hcHome">Home</button>
+            </NavLink>
+          </div>
+          <div id="hcBut">
+            <NavLink to="/library">
+              <button id="hcLib">Library</button>
+            </NavLink>
+          </div>
+          <div id="hcBut">
+            <NavLink to="/history">
+              <button id="hcHist">History</button>
+            </NavLink>
+          </div>
         </div>
       </div>
     );

@@ -80,7 +80,7 @@ class Header extends Component {
             </nav>
           ) : (
             <nav className="user">
-              <NavLink className="home" exact to="/">
+              <NavLink className="homer" exact to="/">
                 Home
               </NavLink>
               <NavLink className="shop" to="/shop">

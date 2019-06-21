@@ -3,6 +3,19 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { setStory } from "../../ducks/StoryReducer";
 import { NavLink } from "react-router-dom";
+import {
+  FaRegEnvelope,
+  FaRegSave,
+  FaTrashAlt,
+  FaRegPlusSquare,
+  FaBookOpen,
+  FaHome,
+  FaRegCalendar,
+  FaRegListAlt,
+  FaReact,
+  FaRandom
+} from "react-icons/fa";
+import "./Library.css";
 
 class Library extends Component {
   constructor(props) {
@@ -51,29 +64,53 @@ class Library extends Component {
       const { title, story_id } = e;
       const { user_id } = this.props.user.user;
       return (
-        <div key={index}>
+        <div id="book" key={index}>
           <NavLink to="/reqs">
-            <button onClick={() => this.getSingleTemplate(story_id)}>
+            <button
+              id="pageBut"
+              onClick={() => this.getSingleTemplate(story_id)}
+            >
               {title}
             </button>
           </NavLink>
           {story_id <= 4 ? (
             []
           ) : (
-            <button onClick={() => this.deleteTemplate(story_id, user_id)}>
-              X
+            <button
+              id="bomb"
+              onClick={() => this.deleteTemplate(story_id, user_id)}
+            >
+              <i>
+                <FaTrashAlt size="fa-lg" />
+              </i>
             </button>
           )}
         </div>
       );
     });
     return (
-      <div>
+      <div className="libraryContainer">
         <h1>Your Library</h1>
-        <div>{mappedLibrary}</div>
-        <NavLink to="/create">
-          <button>Add+</button>
-        </NavLink>
+        <span>
+          <div className="liby">{mappedLibrary}</div>
+          <div id="libButContainer">
+            <div id="libyBut">
+              <NavLink to="/create">
+                <button id="square">
+                  Create Template!
+                  <i>
+                    <FaReact />
+                  </i>
+                </button>
+              </NavLink>
+            </div>
+            <div id="libyBut">
+              <NavLink to="/">
+                <button className="home">Back</button>
+              </NavLink>
+            </div>
+          </div>
+        </span>
       </div>
     );
   }

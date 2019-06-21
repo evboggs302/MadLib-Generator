@@ -1,0 +1,98 @@
+.libraryContainer {
+  display: flex;
+  margin: 0 auto;
+  width: 60vw;
+  height: calc(100vh - 82px);
+  max-width: 1500px;
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+}
+
+.libraryContainer span {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.libraryContainer h1 {
+  margin: 0 auto;
+  padding: 15px;
+  font-size: 27px;
+}
+
+.liby {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+#libButContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#libyBut a button {
+  border-radius: 4px;
+  /* background-color: yellowgreen; */
+  border: none;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  padding: 15px;
+  width: 150px;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+#book {
+  display: flex;
+  align-items: center;
+  padding: 3px;
+}
+
+#pageBut {
+  width: 280px;
+  height: 32px;
+  border-radius: 20px;
+  border: solid 2px;
+  font-size: 12px;
+}
+
+#pageBut:hover,
+.home:hover,
+#libyBut a button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+
+#book a button {
+  text-decoration: none;
+}
+
+#square {
+  background-color: yellowgreen;
+}
+
+#bomb {
+  /* background-color: red; */
+  width: 40px;
+  height: 28px;
+  border-radius: 20px;
+  border: none;
+}
+
+@media (max-width: 900px) {
+  .libraryContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .libraryContainer span {
+    flex-direction: column;
+    align-items: center;
+  }
+}
