@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
 import {
   setSelected,
   setBlanks,
@@ -101,21 +100,16 @@ class CreateSelect extends Component {
   };
 
   render() {
-    const Button = styled.button`
-      border: none;
-      background: none;
-    `;
-
     const { given } = this.props.creation;
     const mappedCreation = given.split(" ").map((e, index) => {
       return (
-        <div key={index}>
-          <Button
+        <div id="mapbut" key={index}>
+          <div
             type="clear"
             onClick={() => this.getWordInfo(mappedCreation[index])}
           >
             {e}
-          </Button>
+          </div>
         </div>
       );
     });
@@ -124,7 +118,7 @@ class CreateSelect extends Component {
     const { title } = this.props.creation;
     const menu = selectedWordInfo.map((e, indexOfOriginal) => {
       return (
-        <div key={indexOfOriginal}>
+        <div className="menubox" key={indexOfOriginal}>
           {e.word[0]}
           <select
             onChange={event => {
@@ -148,40 +142,44 @@ class CreateSelect extends Component {
     return (
       <div className="creationSelection">
         <h2>Your Story</h2>
-        <div>
+        <div id="titleinput">
           Title:
           <input required onChange={event => this.changeTitle(event)} />
         </div>
-        <div>
-          <div>{mappedCreation}</div>
-        </div>
+        <ul id="selectioninfo">
+          **FOR THE BEST RESULTS;
+          <li> - Click on the words below you'd like to be filled in later.</li>
+          <li>- Try to only select a max of 2 words from the same sentence.</li>
+          <li>
+            {" "}
+            - Try to avoid words with punctuation marks. The punctuation will
+            not be saved.
+          </li>
+        </ul>
+        <div id="mappedcreation">{mappedCreation}</div>
         <br />
         <h2>Selected Words' Type</h2>
-        <span>
-          <div>{menu}</div>
-        </span>
+        <div className="menucontainer">{menu}</div>
         {!selectedWordInfo.length ? (
           []
-        ) : !this.props.creation.blanks.length ? (
+        ) : !this.props.creation.blanks.length ? null : !title ? null : (
           <div>
-            <button onClick={this.clearSelectedWords}>Clear Selected</button>
-          </div>
-        ) : !title ? (
-          <div>
-            <button onClick={this.clearSelectedWords}>Clear Selected</button>
-          </div>
-        ) : (
-          <div>
-            <button onClick={this.clearSelectedWords}>Clear Selected</button>
             <NavLink to="/review">
-              <button onClick={this.saveTemplate}>Continue to Review</button>
+              <button id="reviewBut" onClick={this.saveTemplate}>
+                Continue to Review
+              </button>
             </NavLink>
           </div>
         )}
-        <div>
+        <div className="selectionbuttonbucket">
           <NavLink to="/create">
-            <button onClick={this.props.killStore}>Go Back</button>
+            <button id="goinback" onClick={this.props.killStore}>
+              Go Back
+            </button>
           </NavLink>
+          <button id="clearselect" onClick={this.clearSelectedWords}>
+            Clear Selected
+          </button>
         </div>
       </div>
     );

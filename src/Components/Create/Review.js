@@ -56,7 +56,11 @@ class Review extends Component {
 
     const mappedSortedBlanks = sorted.map((type, index) => {
       console.log(type);
-      return <li key={index}>{`"${selected[type[1]]}" to be a ${type[0]}`}</li>;
+      return (
+        <li id="selectedworditem" key={index}>{`"${
+          selected[type[1]]
+        }" to be a(n) ${type[0]}`}</li>
+      );
     });
 
     var yourTemplate = [];
@@ -82,16 +86,20 @@ class Review extends Component {
         <h2>Your Template</h2>
         <div id="yourtemp">
           <h3>{title}</h3>
-          <div>{yourTemplate}</div>
+          <p>{yourTemplate}</p>
         </div>
         <br />
         <div id="reviewbuts">
           <NavLink to="/createselect">
-            <button onClick={this.props.killStore}>Go Back</button>
+            <button id="goinback" onClick={this.props.killStore}>
+              Go Back
+            </button>
           </NavLink>
 
           <NavLink to="/">
-            <button onClick={this.createTmplate}>Submit Template</button>
+            <button id="submitTemp" onClick={this.createTmplate}>
+              Submit Template
+            </button>
           </NavLink>
         </div>
       </div>

@@ -93,13 +93,15 @@ class Register extends Component {
                 <button id="cancel">Cancel</button>
               </NavLink>
             </div>
-            <div className="popbut">
-              <NavLink to="/">
-                <button id="register" onClick={this.register}>
-                  Register
-                </button>
-              </NavLink>
-            </div>
+            {!name || !username || !password || !email ? null : (
+              <div className="popbut">
+                <NavLink to="/">
+                  <button id="register" onClick={this.register}>
+                    Register
+                  </button>
+                </NavLink>
+              </div>
+            )}
           </div>
         </div>
       </div>
