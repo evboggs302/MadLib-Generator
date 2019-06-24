@@ -9,7 +9,7 @@ import "./Hist_Comm.css";
 const socket = io.connect(`http://localhost:19711/`);
 
 class History extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.getUserHistory();
   }
 
@@ -67,10 +67,12 @@ class History extends Component {
           "OH NO! we couldn't delete this at the moment. Pease try again later."
         );
       });
+    this.getUserHistory();
   };
 
   render() {
     const { history } = this.props.userHistory;
+    console.log(history);
     const mappedHistory = history.map(e => {
       const { title, story, to_char, history_id, share, user_id } = e;
       let date = to_char;

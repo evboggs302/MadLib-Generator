@@ -9,8 +9,7 @@ import {
 } from "../../ducks/CreationReducer";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-
-// http://watchout4snakes.com/wo4snakes/Random/RandomParagraph
+import "./CreateSelect.css";
 
 class CreateSelect extends Component {
   constructor(props) {
@@ -147,9 +146,8 @@ class CreateSelect extends Component {
     console.log("store:", this.props.creation);
 
     return (
-      <div>
+      <div className="creationSelection">
         <h2>Your Story</h2>
-        <br />
         <div>
           Title:
           <input required onChange={event => this.changeTitle(event)} />
@@ -180,6 +178,11 @@ class CreateSelect extends Component {
             </NavLink>
           </div>
         )}
+        <div>
+          <NavLink to="/create">
+            <button onClick={this.props.killStore}>Go Back</button>
+          </NavLink>
+        </div>
       </div>
     );
   }

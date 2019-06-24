@@ -1,0 +1,11 @@
+.reviewbucket {
+  display: flex;
+  margin: 0 auto;
+  width: 60vw;
+  height: 100vh;
+  max-width: 1500px;
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+}

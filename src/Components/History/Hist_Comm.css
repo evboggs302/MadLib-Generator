@@ -2,11 +2,12 @@
   display: flex;
   margin: 0 auto;
   width: 60vw;
-  height: 100%;
+  height: calc(100vh - 82px);
   max-width: 1500px;
   background-color: white;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
 }
 .outerbox h1 {
   margin: 0 auto;
@@ -55,7 +56,7 @@
 
 #box {
   display: flex;
-  height: 100%;
+  /* height: 100%; */
   max-width: 1500px;
   background-color: rgba(128, 128, 128, 0.342);
   flex-direction: column;

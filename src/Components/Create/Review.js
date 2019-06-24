@@ -9,6 +9,7 @@ import {
   killStore
 } from "../../ducks/CreationReducer";
 import { NavLink } from "react-router-dom";
+import "./Review.css";
 
 class Review extends Component {
   getFullLibrary = () => {
@@ -48,40 +49,43 @@ class Review extends Component {
   };
   render() {
     console.log("store:", this.props.creation);
-    const { blanks, lines, title } = this.props.creation;
+    const { given, blanks, lines, title } = this.props.creation;
 
     let sorted = blanks.sort(this.comparator);
-    console.log(sorted);
+    let selected = given.split(" ");
 
-    const mappedSortedBlanks = sorted.map((e, index) => {
-      return <li key={index}>{e[0]}</li>;
+    const mappedSortedBlanks = sorted.map((type, index) => {
+      console.log(type);
+      return <li key={index}>{`"${selected[type[1]]}" to be a ${type[0]}`}</li>;
     });
 
     var yourTemplate = [];
     for (let i = 0; i < blanks.length; i++) {
-      yourTemplate.push(lines[i], " ", blanks[i][0], " ");
+      if (blanks[i][0]) {
+        yourTemplate.push(lines[i], " ", blanks[i][0], " ");
+      } else {
+        let theRest = lines.slice(i, lines.length - 1);
+        yourTemplate.push(theRest);
+        break;
+      }
     }
-    if (lines.length <= 2) {
-      yourTemplate.push(lines[lines.length]);
-    } else {
-      yourTemplate.push(lines[lines.length - 1]);
-    }
+    yourTemplate.push(lines[lines.length - 1]);
 
+    console.log("store:", this.props.creation);
+    console.log("yourTemplate:", yourTemplate);
     return (
-      <div>
-        <h2>mapped required words</h2>
-        <div>
+      <div className="reviewbucket">
+        <h2>You Selected .... </h2>
+        <div id="selectedWords">
           <ol type="1">{mappedSortedBlanks}</ol>
         </div>
-        <br />
-        <h2>Your Mad Lib Template</h2>
-        <div>
+        <h2>Your Template</h2>
+        <div id="yourtemp">
           <h3>{title}</h3>
-          <br />
           <div>{yourTemplate}</div>
         </div>
         <br />
-        <div>
+        <div id="reviewbuts">
           <NavLink to="/createselect">
             <button onClick={this.props.killStore}>Go Back</button>
           </NavLink>
