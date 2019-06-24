@@ -1,3 +1,14 @@
 body {
-  background-color: rgb(197, 172, 172);
+  display: flex;
+  background-image: url("./DSCF1494.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.App {
+  width: 100vw;
 }

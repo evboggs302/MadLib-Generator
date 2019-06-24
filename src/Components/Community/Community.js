@@ -48,8 +48,8 @@ class Community extends Component {
       return (
         <div id="box" key={index}>
           <h3>{title}</h3>
-          <div key={user_id}>
-            <div>{story}</div>
+          <div className="storyContainer" key={user_id}>
+            <p>{story}</p>
             <div id="storyinfo">
               <div>{date}</div>
               <div>{`@${username}`}</div>
@@ -59,7 +59,7 @@ class Community extends Component {
       );
     });
     return (
-      <div className="outerBox">
+      <div className="outerbox">
         <h1>LIVE Updates</h1>
         <span>{mappedItems}</span>
         <div className="innerbox">

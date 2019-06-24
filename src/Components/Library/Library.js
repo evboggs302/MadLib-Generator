@@ -81,7 +81,7 @@ class Library extends Component {
               onClick={() => this.deleteTemplate(story_id, user_id)}
             >
               <i>
-                <FaTrashAlt size="fa-lg" />
+                <FaTrashAlt />
               </i>
             </button>
           )}

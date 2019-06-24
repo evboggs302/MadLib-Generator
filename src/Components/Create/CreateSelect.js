@@ -120,12 +120,12 @@ class CreateSelect extends Component {
         </div>
       );
     });
+
     const { selectedWordInfo } = this.state;
     const { title } = this.props.creation;
     const menu = selectedWordInfo.map((e, indexOfOriginal) => {
       return (
         <div key={indexOfOriginal}>
-          {" "}
           {e.word[0]}
           <select
             onChange={event => {

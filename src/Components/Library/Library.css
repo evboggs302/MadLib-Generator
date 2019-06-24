@@ -12,7 +12,7 @@
 .libraryContainer span {
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .libraryContainer h1 {
@@ -23,12 +23,16 @@
 
 .liby {
   display: flex;
+  width: 50%;
   flex-direction: column;
   padding: 10px;
+  align-items: center;
+  justify-content: space-around;
 }
 
 #libButContainer {
   display: flex;
+  width: 50%;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
@@ -50,12 +54,13 @@
 
 #book {
   display: flex;
+  width: 100%;
   align-items: center;
   padding: 3px;
 }
 
 #pageBut {
-  width: 280px;
+  width: 30vw;
   height: 32px;
   border-radius: 20px;
   border: solid 2px;
@@ -64,6 +69,7 @@
 
 #pageBut:hover,
 .home:hover,
+#book #bomb:hover,
 #libyBut a button:hover {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
@@ -94,5 +100,17 @@
   .libraryContainer span {
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 955px) {
+  #pageBut {
+    height: 36px;
+  }
+}
+@media (max-width: 610px) {
+  #pageBut {
+    height: 100%;
   }
 }

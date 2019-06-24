@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setGiven } from "../../ducks/CreationReducer";
 import { Redirect } from "react-router-dom";
+import "./Create.css";
 
 class Create extends Component {
   constructor(props) {
@@ -33,28 +34,29 @@ class Create extends Component {
 
   render() {
     return (
-      <div>
+      <div className="creationContainer">
         <h2>Create Your Own Story</h2>
         <p>
           In the box provided below, type out a paragraph that is no more than
           1000 characters long. Don't try to be funny just yet. We'll get to the
           funny-business in a little bit.
         </p>
-        {/* "Hey man!" They were shocked! */}
-        <textarea
-          spellCheck
-          rows="20"
-          cols="60"
-          wrap="hard"
-          required
-          maxLength="1000"
-          placeholder="Start typing your story here..."
-          onChange={event => this.changeHandler(event)}
-        />
+        <div id="text">
+          <textarea
+            spellCheck
+            rows="20"
+            cols="40"
+            wrap="hard"
+            required
+            maxLength="1000"
+            placeholder="Start typing your story here..."
+            onChange={event => this.changeHandler(event)}
+          />
+        </div>
         {!this.state.typed ? (
           []
         ) : (
-          <div>
+          <div id="createNext">
             {this.renderRedirect()}
             <button onClick={this.setRedirect}>Next</button>
           </div>
