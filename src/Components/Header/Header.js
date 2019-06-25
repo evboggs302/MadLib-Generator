@@ -96,7 +96,7 @@ class Header extends Component {
                 </button>
               </NavLink>
 
-              <div>{`@${user.username}`}</div>
+              <div id="username">{`@${user.username}`}</div>
               <img className="pic" src={`${user.picture}`} alt="" />
             </nav>
           )}

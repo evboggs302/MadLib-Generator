@@ -68,7 +68,7 @@ class App extends Component {
           <Route path="/story" component={Story} />
           <Route path="/register" component={Register} />
           <Route path="/review" component={Review} />
-          <Route path="*" componen={CatchAll} />
+          <Route path="*" component={CatchAll} />
         </Switch>
       </div>
     );

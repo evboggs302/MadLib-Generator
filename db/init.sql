@@ -208,7 +208,7 @@ insert into shop (prod_name, prod_price)
 values
 ('StarWars Mad Libs', 8.50),
 ('Rick and Morty Mad Libs', 1.37),
-('Adult Mad Libs Game', 6.90);
+('Pirate Mad Libs', 6.90);
 
 select * from shop;
 

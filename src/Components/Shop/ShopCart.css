@@ -1,0 +1,98 @@
+.SCcontainer {
+  display: flex;
+  margin: 0 auto;
+  width: 60vw;
+  height: 100vh;
+  max-width: 1500px;
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+}
+
+.SCcontainer h1 {
+  margin: 0 auto;
+  padding: 15px;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+#nousershop,
+#nocartlength {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-style: italic;
+}
+#scButcontainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+#scButcontainer button {
+  display: flex;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  padding: 5px;
+  width: 120px;
+  transition: all 0.3s;
+  margin: 5px;
+  text-decoration: none;
+}
+
+#scButcontainer button:hover,
+#scButcontainer a button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+#addcart {
+  background-color: rgba(59, 148, 59, 0.829);
+}
+#goneshopping {
+  background-color: rgb(190, 138, 5);
+}
+
+#removecart {
+  background-color: rgb(206, 204, 72);
+}
+
+#removeALLcart {
+  background-color: red;
+}
+
+.scitem {
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 18px;
+}
+
+#pricing {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#payment {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px;
+}
+
+#gobackshopping {
+  background-color: navy;
+}
+
+.mappedstocart {
+  border-radius: 10px;
+  background-color: rgba(128, 128, 128, 0.473);
+}

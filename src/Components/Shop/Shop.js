@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { setCart, setStock } from "../../ducks/ShopReducer";
-import "./Shop.css";
+import "./ShopCart.css";
 
 class Shop extends Component {
   componentDidMount = () => {
@@ -68,7 +68,6 @@ class Shop extends Component {
 
     const mappedStock = stock.map(e => {
       const { prod_id, prod_name, prod_price } = e;
-      // const { user_id} = e
       let inCart = false;
       for (let i = 0; i < cart.length; i++) {
         if (cart[i].prod_name === e.prod_name) {
@@ -76,27 +75,29 @@ class Shop extends Component {
         }
       }
       return (
-        <div key={prod_id}>
-          <div key={prod_id}>
-            <div>
-              <h3>{prod_name}</h3>
-            </div>
-            <div>
-              <div>{prod_price}</div>
-            </div>
-            <div>
+        <div className="scitem" key={prod_id}>
+          <h3>{prod_name}</h3>
+          <div id="pricing">
+            {`$${prod_price}`}
+            <div id="scButcontainer">
               {!user ? (
                 <div>
-                  <div type="text">
+                  <div id="nousershop" type="text">
                     **To add item to your cart, please login first.
                   </div>
                 </div>
               ) : inCart === false ? (
-                <button onClick={() => this.addToCart(prod_name, prod_price)}>
+                <button
+                  id="addcart"
+                  onClick={() => this.addToCart(prod_name, prod_price)}
+                >
                   Add To Cart
                 </button>
               ) : (
-                <button onClick={() => this.removeFromCart(prod_name)}>
+                <button
+                  id="removecart"
+                  onClick={() => this.removeFromCart(prod_name)}
+                >
                   Remove From Cart
                 </button>
               )}
@@ -107,19 +108,20 @@ class Shop extends Component {
     });
 
     return (
-      <div>
+      <div className="SCcontainer">
         <h1>The Shop</h1>
         {!user ? (
-          <div>
+          <div id="nousershop">
             <div type="text">**To access the cart, please login first.</div>
           </div>
         ) : (
-          <NavLink to="/shopping/cart">
-            <button>Shopping Cart</button>
-          </NavLink>
+          <div id="scButcontainer">
+            <NavLink to="/shopping/cart">
+              <button id="goneshopping">Shopping Cart</button>
+            </NavLink>
+          </div>
         )}
-
-        <div>{mappedStock}</div>
+        <div className="mappedstocart">{mappedStock}</div>
       </div>
     );
   }

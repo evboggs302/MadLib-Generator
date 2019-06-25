@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 import { setCart, setStock } from "../../ducks/ShopReducer";
-import "./Cart.css";
+import "./ShopCart.css";
 
 class Cart extends Component {
   constructor(props) {
@@ -62,21 +63,17 @@ class Cart extends Component {
     console.log(this.props.shop);
     const { cart } = this.props.shop;
     const mappedCart = cart.map(e => {
-      const { prod_id, prod_img, prod_name, prod_price } = e;
+      const { prod_id, prod_name, prod_price } = e;
 
       return (
-        <div key={prod_id}>
-          <div>
-            <img src={`${prod_img}`} alt="" />
-          </div>
-          <div>
-            <h3>{prod_name}</h3>
-          </div>
-          <div>
-            <div>{prod_price}</div>
-          </div>
-          <div>
-            <button onClick={() => this.removeFromCart(prod_name)}>
+        <div className="scitem" key={prod_id}>
+          <h3>{prod_name}</h3>
+          <div>{prod_price}</div>
+          <div id="scButcontainer">
+            <button
+              id="removecart"
+              onClick={() => this.removeFromCart(prod_name)}
+            >
               Remove From Cart
             </button>
           </div>
@@ -84,32 +81,33 @@ class Cart extends Component {
       );
     });
     return (
-      <div>
-        <div>
-          <h1>Cart</h1>
-        </div>
+      <div className="SCcontainer">
+        <h1>Cart</h1>
         {!cart.length ? (
-          <div>
+          <div id="nocartlength">
             <div>
               {"OH NO! It appears as though you have nothing in your cart."}
             </div>
             <div>{"Please go to the store and find something nice!"}</div>
           </div>
         ) : (
-          <div>
-            <div>
+          <div id="cartlength">
+            <div id="payment">
               <StripeCheckout
                 token={this.onToken}
                 stripeKey="pk_test_k7TYhKQj3micGckl753j3C2b00ZnyhVPbe"
                 amount={100 * this.state.final}
-                billingAddress
-                shippingAddress
               />
             </div>
-            {mappedCart}
-            <button onClick={this.deleteCartContents}>
-              remove ALL items from cart
-            </button>
+            <div className="mappedstocart">{mappedCart}</div>
+            <div id="scButcontainer">
+              <NavLink to="/shop">
+                <button id="gobackshopping">Return to Store</button>
+              </NavLink>
+              <button id="removeALLcart" onClick={this.deleteCartContents}>
+                Remove ALL Item
+              </button>
+            </div>
           </div>
         )}
       </div>

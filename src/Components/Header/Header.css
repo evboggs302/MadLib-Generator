@@ -21,17 +21,19 @@ header {
   justify-items: center;
   align-items: center;
   padding-left: 10px;
-  font-size: 27px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 30px;
 }
 
 .logi_reg {
   display: flex;
   height: 100%;
   width: 100%;
-  font-size: 15px;
+  font-size: 20px;
   text-decoration: none;
   color: white;
   align-items: center;
+  font-family: "Cantarell", sans-serif;
   justify-content: space-around;
 }
 
@@ -41,22 +43,24 @@ header {
   color: white;
 }
 .logoutHead {
-  font-size: 14px;
+  font-size: 20px;
   text-decoration: none;
   background: none;
   border: none;
   color: white;
+  font-family: "Cantarell", sans-serif;
 }
 
 .user {
   display: flex;
   height: 100%;
   width: 100%;
-  font-size: 15px;
+  font-size: 20px;
   text-decoration: none;
   color: white;
   align-items: center;
   justify-content: space-around;
+  font-family: "Cantarell", sans-serif;
   margin-left: 0;
 }
 
@@ -75,6 +79,9 @@ header {
 .pic {
   width: 78px;
   border-radius: 50%;
+}
+#username {
+  text-decoration: underline;
 }
 
 @media (max-width: 765px) {
@@ -95,7 +102,7 @@ header {
   }
 }
 
-@media (max-width: 463px) {
+@media (max-width: 490px) {
   .user div {
     display: none;
   }
