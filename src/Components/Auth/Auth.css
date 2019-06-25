@@ -51,7 +51,7 @@
   cursor: pointer;
   text-decoration: none;
 }
-#logbut a #login,
+#logbut #login,
 #logbut a #register {
   display: flex;
   border-radius: 4px;

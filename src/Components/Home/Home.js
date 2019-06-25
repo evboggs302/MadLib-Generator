@@ -66,16 +66,16 @@ class Home extends Component {
         ) : (
           <div className="home_container">
             <h2>
-              Words,<span>{user.call_name}.</span> Words!!
+              Welcome <span>{user.call_name}</span>!
             </h2>
             <p>
               Welcome back to the place where the words are made up, and the
-              stories don't matter! If you'd like to enjoy already created
-              madlibs, click "Library." If you'd like to create your own madlib,
-              click "Create." Want to see the saved stories you've previously
-              completed? Click "History". Just want to laugh, hop on over to our
-              "Community" page to see some shenanigans. If you're just feeling
-              lucky, simply click "Random" to get started!
+              stories don't matter! To enjoy already created madlibs, click
+              "Library." To create your own madlib, click "Create." See the
+              saved stories you've previously completed, by clicking "History".
+              If you want to laugh, hop on over to our Community page to share
+              in some of the shenanigans. If you're just feeling lucky, simply
+              click "Random" to get started!
             </p>
             <div className="home_page_button_container">
               <NavLink to="/history">
