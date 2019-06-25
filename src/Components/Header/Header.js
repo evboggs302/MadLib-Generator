@@ -39,16 +39,10 @@ class Header extends Component {
       showRegister: !this.state.showRegister
     });
   };
-  // backdropClickHandler = () => {
-  //   this.setState({
-  //     showOpen: false
-  //   });
-  // };
 
   render() {
     let backdrop;
     if (this.state.sideMenuOpen) {
-      // click={this.backdropClickHandler}
       backdrop = <Backdrop />;
     }
     console.log(this.props);

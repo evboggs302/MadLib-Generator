@@ -2,17 +2,29 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/UserReducer";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import "./Auth.css";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      redirect: false,
       username: "",
       password: ""
     };
   }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    });
+  };
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
+  };
   universalChangeHandler = (prop, value) => {
     this.setState({
       [prop]: value
@@ -21,7 +33,7 @@ class Login extends Component {
 
   keyPress = e => {
     if (e.keyCode === 13) {
-      return this.login;
+      this.login();
     }
   };
 
@@ -38,6 +50,7 @@ class Login extends Component {
         console.log(err);
         alert("Incorrect username/password");
       });
+    this.setRedirect();
   };
   render() {
     const { username, password } = this.state;
@@ -76,11 +89,10 @@ class Login extends Component {
               </NavLink>
             </div>
             <div className="popbut">
-              <NavLink to="/">
-                <button id="login" onClick={this.login}>
-                  Login
-                </button>
-              </NavLink>
+              {this.renderRedirect()}
+              <button id="login" onClick={this.login}>
+                Login
+              </button>
             </div>
           </div>
         </div>
