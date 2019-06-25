@@ -21,7 +21,7 @@ class Login extends Component {
 
   keyPress = e => {
     if (e.keyCode === 13) {
-      this.login;
+      return this.login;
     }
   };
 
