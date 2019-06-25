@@ -19,7 +19,9 @@ module.exports = {
     const { title, share, story } = req.body;
     const { user_id } = req.session.user;
     db.save_to_history([user_id, title, story, share])
-      .then(saved => res.status(200).send(saved))
+      .then(saved => {
+        res.status(200).send(saved);
+      })
       .catch(err => console.log(err));
   },
   toggleShare: (req, res, next) => {

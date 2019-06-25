@@ -105,6 +105,13 @@
   background-color: navy;
 }
 
+#neededinfotogo {
+  padding: 10px;
+  color: red;
+  text-decoration: underline;
+  font-style: italic;
+}
+
 @media (max-width: 400px) {
   #mappedcreation {
     height: 50%;

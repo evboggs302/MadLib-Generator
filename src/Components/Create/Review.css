@@ -55,3 +55,23 @@
 #submitTemp {
   background-color: green;
 }
+
+#yourtemp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#yourtemp h3 {
+  margin: 0 auto;
+  font-size: 19px;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+#yourtemp p {
+  padding: 12px;
+  text-indent: 30px;
+  line-height: 1.4;
+  font-size: 18px;
+}

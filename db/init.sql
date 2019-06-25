@@ -15,7 +15,7 @@ create table users (
 
 insert into users (call_name, username, email, password)
 values
-('Evan Boggs', 'evboggs', 'evan@evan.com', 'evan');
+('Evan Boggs', 'evboggs', 'evboggs@udel.edu', 'evan');
 
 select * from users;
 
@@ -204,11 +204,11 @@ create table shop (
     quant int
 );
 
-insert into shop (prod_img, prod_name, prod_price, quant)
+insert into shop (prod_name, prod_price)
 values
-('https://images.penguinrandomhouse.com/cover/9781524785864', 'StarWars Mad Libs', 8.50, 4),
-('https://lh3.googleusercontent.com/proxy/4I-m6lx-k_KEcnwJWYqeleUH4x-SDpmOSaAyAEJmDzuU8KHHgJGF-GG7OwmmuQSs4NSl8CzXUoJLNSUHDp8T9tYbcug91OdN60vftlBmlmb0Ipm8WK-Uy2uR-vOPR2ZEsVBeL18sTaL4f_u5JnfrlHBsYykaOBTmkz8lUP7jMUEts-sN-6I=s500-pd-e365-rw-pc0xffffff', 'Rick and Morty Mad Libs', 1.37, 69),
-('https://www.eurekapuzzles.com/components/com_virtuemart/shop_image/product/33840.jpg', 'Adult Mad Libs Game', 6.90, 12);
+('StarWars Mad Libs', 8.50),
+('Rick and Morty Mad Libs', 1.37),
+('Adult Mad Libs Game', 6.90);
 
 select * from shop;
 

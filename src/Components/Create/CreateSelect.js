@@ -160,9 +160,13 @@ class CreateSelect extends Component {
         <br />
         <h2>Selected Words' Type</h2>
         <div className="menucontainer">{menu}</div>
-        {!selectedWordInfo.length ? (
-          []
-        ) : !this.props.creation.blanks.length ? null : !title ? null : (
+        {!selectedWordInfo.length ||
+        !this.props.creation.blanks.length ||
+        !title ? (
+          <div id="neededinfotogo">
+            **Word types and titles are mandatory.**
+          </div>
+        ) : (
           <div>
             <NavLink to="/review">
               <button id="reviewBut" onClick={this.saveTemplate}>

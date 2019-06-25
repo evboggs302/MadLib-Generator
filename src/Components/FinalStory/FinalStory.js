@@ -18,29 +18,23 @@ import {
 import "./FinalStory.css";
 
 class Story extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      share: false
-    };
-  }
-
   componentDidMount() {
     this.toFinal();
   }
 
   saveAndShare = () => {
-    this.setState({
-      share: true
-    });
-    this.saveToUserHistory();
+    const { title, final } = this.props.story;
+    axios
+      .post("/api/history/", { title: title, share: true, story: final })
+      .then(res => {
+        console.log(res);
+      });
   };
 
   saveToUserHistory = () => {
-    const { share } = this.state;
     const { title, final } = this.props.story;
     axios
-      .post("/api/history/", { title: title, share: share, story: final })
+      .post("/api/history/", { title: title, share: false, story: final })
       .then(res => {
         console.log(res);
       });

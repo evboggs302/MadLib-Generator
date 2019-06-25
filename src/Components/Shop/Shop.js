@@ -38,14 +38,12 @@ class Shop extends Component {
       .catch(err => console.log(err));
   };
 
-  addToCart = (img, name, price, quant) => {
+  addToCart = (name, price) => {
     const { user_id } = this.props.user.user;
     axios
       .post(`/api/shopping/cart/${user_id}`, {
-        image: img,
         name: name,
-        price: price,
-        quant: quant
+        price: price
       })
       .then(cart => {
         this.props.setCart(cart.data);
@@ -69,7 +67,7 @@ class Shop extends Component {
     const { stock, cart } = this.props.shop;
 
     const mappedStock = stock.map(e => {
-      const { prod_id, prod_img, quantity, prod_name, prod_price } = e;
+      const { prod_id, prod_name, prod_price } = e;
       // const { user_id} = e
       let inCart = false;
       for (let i = 0; i < cart.length; i++) {
@@ -79,42 +77,31 @@ class Shop extends Component {
       }
       return (
         <div key={prod_id}>
-          {quantity === 0 ? (
-            []
-          ) : (
-            <div key={prod_id}>
-              <div>
-                <img src={`${prod_img}`} alt="" />
-              </div>
-              <div>
-                <h3>{prod_name}</h3>
-              </div>
-              <div>
-                <div>{prod_price}</div>
-              </div>
-              <div>
-                {!user ? (
-                  <div>
-                    <div type="text">
-                      **To add item to your cart, please login first.
-                    </div>
-                  </div>
-                ) : inCart === false ? (
-                  <button
-                    onClick={() =>
-                      this.addToCart(prod_img, prod_name, prod_price, 1)
-                    }
-                  >
-                    Add To Cart
-                  </button>
-                ) : (
-                  <button onClick={() => this.removeFromCart(prod_name)}>
-                    Remove From Cart
-                  </button>
-                )}
-              </div>
+          <div key={prod_id}>
+            <div>
+              <h3>{prod_name}</h3>
             </div>
-          )}
+            <div>
+              <div>{prod_price}</div>
+            </div>
+            <div>
+              {!user ? (
+                <div>
+                  <div type="text">
+                    **To add item to your cart, please login first.
+                  </div>
+                </div>
+              ) : inCart === false ? (
+                <button onClick={() => this.addToCart(prod_name, prod_price)}>
+                  Add To Cart
+                </button>
+              ) : (
+                <button onClick={() => this.removeFromCart(prod_name)}>
+                  Remove From Cart
+                </button>
+              )}
+            </div>
+          </div>
         </div>
       );
     });

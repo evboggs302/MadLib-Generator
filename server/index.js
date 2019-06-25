@@ -85,7 +85,6 @@ app.delete("/api/library/:user", deleteTemplate);
 // shop EndPoints
 app.get("/api/shop", getAllItems);
 app.get("/api/shoppingcart/:id", getCart);
-// app.put("/api/shop/:prod_id", updateQuant); // on checkout
 app.post("/api/shopping/cart/:id", addToCart);
 app.put("/api/shoppingcart/:id", removeFromCart);
 app.delete("/api/shop/cart/:id", deleteCart);
@@ -99,23 +98,6 @@ io.on("connection", socket => {
       io.emit("shared data", data);
     });
   });
-
-  // socket.on("get history", () => {
-  //   const db = app.get("db");
-  //   const { user_id } = req.session.user;
-  //   db.get_user_history(user_id)
-  //     .then(hist => {
-  //       if (hist.length) {
-  //         io.emit("users history", hist);
-  //       } else {
-  //         io.emit('nothing to show', `Nice try! You'll have to create stories first!`);
-  //       }
-  //     })
-  //     .catch(err => console.log(err));
-  // });
-
-  // socket.on("delete from history", () => {});
-
   socket.on("disconnect", () => {
     console.log("Disconnected");
   });

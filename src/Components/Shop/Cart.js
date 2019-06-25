@@ -12,7 +12,6 @@ class Cart extends Component {
       complete: false,
       final: 0
     };
-    // this.submit = this.submit.bind(this);
   }
 
   componentDidMount = () => {
@@ -52,20 +51,6 @@ class Cart extends Component {
       .catch(err => console.log(err));
   };
 
-  // async submit(ev) {
-  //   // User clicked submit
-  //   let { token } = await this.props.stripe.createToken({ name: "Name" });
-  //   let response = await axios.post("/api/charge", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "text/plain" },
-  //     body: token.id
-  //   });
-
-  //   if (response.ok) {
-  //     this.setState({ complete: true });
-  //     console.log("Purchase Complete!");
-  //   }
-  // }
   onToken = token => {
     console.log(token);
     const { final } = this.state;
@@ -78,7 +63,6 @@ class Cart extends Component {
     const { cart } = this.props.shop;
     const mappedCart = cart.map(e => {
       const { prod_id, prod_img, prod_name, prod_price } = e;
-      // const {quantity, user_id} = e
 
       return (
         <div key={prod_id}>
