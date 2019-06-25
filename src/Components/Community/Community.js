@@ -13,11 +13,11 @@ class Community extends Component {
       items: []
     };
 
-    socket.emit("get_comm", getRequest => {
+    socket.emit("get comm", getRequest => {
       console.log(getRequest);
     });
 
-    socket.on("shared_data", data => {
+    socket.on("shared data", data => {
       this.setState({
         items: data
       });
