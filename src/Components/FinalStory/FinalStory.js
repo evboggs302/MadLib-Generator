@@ -3,18 +3,7 @@ import { connect } from "react-redux";
 import { setFinal } from "../../ducks/StoryReducer";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import {
-  FaRegEnvelope,
-  FaRegSave,
-  FaTrashAlt,
-  FaRegPlusSquare,
-  FaBookOpen,
-  FaHome,
-  FaRegCalendar,
-  FaRegListAlt,
-  FaReact,
-  FaRandom
-} from "react-icons/fa";
+import { FaRegEnvelope, FaRegSave, FaHome, FaRegListAlt } from "react-icons/fa";
 import "./FinalStory.css";
 
 class Story extends Component {

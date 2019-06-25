@@ -92,14 +92,14 @@ app.delete("/api/shop/cart/:id", deleteCart);
 // SOCKET.IO community EndPoints
 io.on("connection", socket => {
   console.log("socket hit");
-  socket.on("get comm", () => {
+  socket.on("get_comm", () => {
     const db = app.get("db");
     db.shared_community().then(data => {
-      io.emit("shared data", data);
+      io.emit("shared_data", data);
     });
   });
   socket.on("disconnect", () => {
-    console.log("Disconnected");
+    console.log("DISCONNECTED");
   });
 });
 

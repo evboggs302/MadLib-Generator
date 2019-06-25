@@ -110,6 +110,9 @@ class Shop extends Component {
     return (
       <div className="SCcontainer">
         <h1>The Shop</h1>
+        <div>
+          ***THIS IS CURRENTLY IN BETA. PLEASE DO NOT ATTEMPT TO CHECK OUT.***
+        </div>
         {!user ? (
           <div id="nousershop">
             <div type="text">**To access the cart, please login first.</div>

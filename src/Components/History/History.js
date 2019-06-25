@@ -122,18 +122,6 @@ class History extends Component {
     return (
       <div className="outerbox">
         <h1>Your History</h1>
-        <div className="innerbox">
-          <div id="hcBut">
-            <NavLink to="/">
-              <button id="hcHome">Go Home</button>
-            </NavLink>
-          </div>
-          <div id="hcBut">
-            <NavLink to="/community">
-              <button id="hcComm">Community</button>
-            </NavLink>
-          </div>
-        </div>
         <span>{mappedHistory}</span>
         <div className="innerbox">
           <div id="hcBut">

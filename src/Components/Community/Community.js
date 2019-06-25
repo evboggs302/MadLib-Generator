@@ -13,11 +13,11 @@ class Community extends Component {
       items: []
     };
 
-    socket.emit("get comm", getRequest => {
+    socket.emit("get_comm", getRequest => {
       console.log(getRequest);
     });
 
-    socket.on("shared data", data => {
+    socket.on("shared_data", data => {
       this.setState({
         items: data
       });
@@ -37,7 +37,7 @@ class Community extends Component {
   };
 
   getCommunity = () => {
-    socket.emit("get comm");
+    socket.emit("get_comm");
   };
 
   render() {
@@ -88,12 +88,5 @@ const mapStateToProps = reduxState => {
   return reduxState;
 };
 
-//   const mapDispatchToProps = {
-//     setStory
-//   };
-
-const invokedConnect = connect(
-  mapStateToProps
-  // mapDispatchToProps
-);
+const invokedConnect = connect(mapStateToProps);
 export default invokedConnect(Community);

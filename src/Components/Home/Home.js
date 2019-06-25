@@ -5,12 +5,7 @@ import axios from "axios";
 import { NavLink, Redirect } from "react-router-dom";
 import "./Home.css";
 import {
-  FaRegEnvelope,
-  FaRegSave,
-  FaTrashAlt,
-  FaRegPlusSquare,
   FaBookOpen,
-  FaHome,
   FaRegCalendar,
   FaRegListAlt,
   FaReact,
@@ -52,9 +47,9 @@ class Home extends Component {
             <p>
               {"  "}Welcome to the place where the words are made up, and the
               stories don't matter. If you'd like to enjoy, and possibly create,
-              more labs on this site, please login above. If you don't want to
-              login, I understand. I too like to live life on the edge on
-              occasion. Simply click the "Random" button below to get started.
+              more madlibs on this site, please login above. I too enjoy
+              ocassionally living life on the edge. Simply click the "Random"
+              button below to get started.
             </p>
             <div>
               {this.renderRedirect()}
@@ -75,14 +70,14 @@ class Home extends Component {
             </h2>
             <p>
               Welcome back to the place where the words are made up, and the
-              stories don't matter! If you'd like to enjoy already created Mad
-              Libs, click the below button to go to the "Library." If you'd like
-              to create your own Mad Lib, click "Create." Want to see the saved
-              stories you've previously completed? Click "History". If you don't
-              feel like creating anything, but still want to laugh, hop on over
-              to our "Community" page. You'll be able to see all the shenanigans
-              others have been up to. If you're just feeling lucky, simply click
-              "Random" to get started!
+              stories don't matter! If you'd like to enjoy already created
+              madlibs, click the below button to go to the "Library." If you'd
+              like to create your own madlib, click "Create." Want to see the
+              saved stories you've previously completed? Click "History". If you
+              don't feel like creating anything, but still want to laugh, hop on
+              over to our "Community" page. You'll be able to see all the
+              shenanigans others have been up to. If you're just feeling lucky,
+              simply click "Random" to get started!
             </p>
             <div className="home_page_button_container">
               <NavLink to="/history">

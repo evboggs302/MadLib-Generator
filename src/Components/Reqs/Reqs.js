@@ -3,18 +3,7 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { setFinal, fillBlanks } from "../../ducks/StoryReducer";
 import "./Reqs.css";
-import {
-  FaRegEnvelope,
-  FaRegSave,
-  FaTrashAlt,
-  FaRegPlusSquare,
-  FaBookOpen,
-  FaHome,
-  FaRegCalendar,
-  FaRegListAlt,
-  FaReact,
-  FaRandom
-} from "react-icons/fa";
+import { FaBookOpen, FaHome, FaReact } from "react-icons/fa";
 
 class Reqs extends Component {
   constructor(props) {

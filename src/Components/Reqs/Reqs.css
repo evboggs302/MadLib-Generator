@@ -8,6 +8,7 @@
   background-color: white;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
 }
 .req_inputs p {
   padding: 20px;
