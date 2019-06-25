@@ -19,6 +19,12 @@ class Login extends Component {
     });
   };
 
+  keyPress = e => {
+    if (e.keyCode === 13) {
+      this.login;
+    }
+  };
+
   login = () => {
     const { username, password } = this.state;
     const picNumber = Math.floor(Math.random() * 9) + 1;
@@ -57,6 +63,7 @@ class Login extends Component {
               onChange={e =>
                 this.universalChangeHandler(e.target.name, e.target.value)
               }
+              onKeyDown={this.keyPress}
               type="password"
               value={password}
               name="password"
