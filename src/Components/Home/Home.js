@@ -66,7 +66,7 @@ class Home extends Component {
         ) : (
           <div className="home_container">
             <h2>
-              Welcome <span>{user.call_name}</span>!
+              Welcome<span>{user.call_name}</span>!
             </h2>
             <p>
               Welcome back to the place where the words are made up, and the

@@ -30,8 +30,8 @@ class Register extends Component {
       .post("/api/register", { name, username, email, password, picture })
       .then(res => {
         console.log(res.data);
-        const { username, email, user_id } = res.data;
-        this.props.setUser({ username, email, user_id, picture });
+        const { username, email, user_id, call_name } = res.data;
+        this.props.setUser({ username, email, user_id, picture, call_name });
       })
       .catch(err => console.log(err));
   };
