@@ -28,9 +28,9 @@ class Community extends Component {
     });
   }
 
-  componentDidMount = () => {
-    this.getCommunity();
-  };
+  // componentDidMount = () => {
+  //   this.getCommunity();
+  // };
 
   componentWillUnmount = () => {
     socket.on("disonnect");
@@ -41,6 +41,7 @@ class Community extends Component {
   };
 
   render() {
+    this.getCommunity();
     const { items } = this.state;
     const mappedItems = items.map((e, index) => {
       const { to_char, title, story, user_id, username } = e;
