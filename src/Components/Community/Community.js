@@ -28,10 +28,6 @@ class Community extends Component {
     });
   }
 
-  // componentDidMount = () => {
-  //   this.getCommunity();
-  // };
-
   componentWillUnmount = () => {
     socket.on("disonnect");
   };
