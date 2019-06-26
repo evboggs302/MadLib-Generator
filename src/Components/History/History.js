@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { setHistory } from "../../ducks/HistoryReducer";
 import "./Hist_Comm.css";
 
-const socket = io.connect();
+const socket = io();
 
 class History extends Component {
   componentWillMount() {
@@ -21,7 +21,6 @@ class History extends Component {
         })
         .then(res => {
           this.props.setHistory(res.data);
-          socket.emit("get comm");
         })
         .catch(err => {
           alert(
@@ -35,7 +34,6 @@ class History extends Component {
         })
         .then(res => {
           this.props.setHistory(res.data);
-          socket.emit("get comm");
         })
         .catch(err => {
           alert(
@@ -43,6 +41,7 @@ class History extends Component {
           );
         });
     }
+    socket.emit("get comm");
   };
 
   getUserHistory = () => {

@@ -7,7 +7,7 @@ import axios from "axios";
 import { FaRegEnvelope, FaRegSave, FaHome, FaRegListAlt } from "react-icons/fa";
 import "./FinalStory.css";
 
-const socket = io.connect();
+const socket = io();
 
 class Story extends Component {
   componentDidMount() {
