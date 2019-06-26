@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import { NavLink } from "react-router-dom";
 import "../History/Hist_Comm.css";
 
-const socket = io();
+const socket = io.connect();
 
 class Community extends Component {
   constructor(props) {
