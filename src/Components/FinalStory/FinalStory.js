@@ -118,13 +118,13 @@ class Story extends Component {
                   Email <FaRegEnvelope />
                 </span>
               </button>
-              <NavLink to="/library">
+              {/* <NavLink to="/library">
                 <button className="final share" onClick={this.saveAndShare}>
                   <span>
                     {`Save & Share`} <FaRegListAlt />
                   </span>
                 </button>
-              </NavLink>
+              </NavLink> */}
               <NavLink to="/">
                 <button className="req home">
                   <span>
