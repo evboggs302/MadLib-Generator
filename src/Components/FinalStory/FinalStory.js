@@ -69,6 +69,9 @@ class Story extends Component {
       .catch(err => {
         console.error("here is the error: ", err);
       });
+    alert(
+      "An email has been sent to the email address associated to your username. The email should be arriving in a few minutes."
+    );
   };
 
   render() {
