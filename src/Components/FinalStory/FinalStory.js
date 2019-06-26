@@ -6,6 +6,8 @@ import axios from "axios";
 import { FaRegEnvelope, FaRegSave, FaHome, FaRegListAlt } from "react-icons/fa";
 import "./FinalStory.css";
 
+const socket = io.connect();
+
 class Story extends Component {
   componentDidMount() {
     this.toFinal();
@@ -18,6 +20,7 @@ class Story extends Component {
       .then(res => {
         console.log(res);
       });
+    socket.emit("get comm");
   };
 
   saveToUserHistory = () => {

@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { setHistory } from "../../ducks/HistoryReducer";
 import "./Hist_Comm.css";
 
-const socket = io.connect(`http://localhost:19711/`);
+const socket = io.connect();
 
 class History extends Component {
   componentWillMount() {
