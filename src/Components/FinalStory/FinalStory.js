@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setFinal } from "../../ducks/StoryReducer";
 import { NavLink } from "react-router-dom";
+import io from "socket.io-client";
 import axios from "axios";
 import { FaRegEnvelope, FaRegSave, FaHome, FaRegListAlt } from "react-icons/fa";
 import "./FinalStory.css";
