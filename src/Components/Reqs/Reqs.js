@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { setFinal, fillBlanks } from "../../ducks/StoryReducer";

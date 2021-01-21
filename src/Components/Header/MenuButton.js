@@ -1,4 +1,3 @@
-import React from "react";
 import "./MenuButton.css";
 
 const MenuButton = props => (

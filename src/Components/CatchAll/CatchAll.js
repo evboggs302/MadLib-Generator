@@ -1,6 +1,6 @@
 // render photo of pirate Josh
 
-import React, { Component } from "react";
+import { Component } from "react";
 import josh from "../josh.jpg";
 import "./CatchAll.css";
 
