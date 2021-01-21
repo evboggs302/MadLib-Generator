@@ -12,27 +12,27 @@ const {
   SESSION_SECRET,
   EMAIL,
   EMAIL_PASSWORD,
-  SECRET_KEY
+  SECRET_KEY,
 } = process.env;
 const stripe = require("stripe")(SECRET_KEY);
 const {
   login,
   register,
   userInfo,
-  logout
+  logout,
 } = require("./controller/authController");
 const {
   getUserHistory,
   saveStory,
   toggleShare,
-  deleteFromHist
+  deleteFromHist,
 } = require("./controller/historyController");
 const {
   getRandom,
   getFullLibrary,
   getSingleTemplate,
   saveTemplate,
-  deleteTemplate
+  deleteTemplate,
 } = require("./controller/libraryController");
 const {
   getAllItems,
@@ -40,7 +40,7 @@ const {
   addToCart,
   removeFromCart,
   deleteCart,
-  updateQuant
+  updateQuant,
 } = require("./controller/shopController");
 
 app.use(express.json());
@@ -53,12 +53,12 @@ app.use(
     secret: SESSION_SECRET,
     resave: true,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 14 // 2week cookie
-    }
+      maxAge: 1000 * 60 * 60 * 24 * 14, // 2week cookie
+    },
   })
 );
 
-massive(CONNECTION_STRING).then(db => {
+massive(CONNECTION_STRING).then((db) => {
   app.set("db", db);
   console.log("db is connected");
 });
@@ -90,11 +90,11 @@ app.put("/api/shoppingcart/:id", removeFromCart);
 app.delete("/api/shop/cart/:id", deleteCart);
 
 // SOCKET.IO community EndPoints
-io.on("connection", socket => {
+io.on("connection", (socket) => {
   console.log("socket hit");
   socket.on("get comm", () => {
     const db = app.get("db");
-    db.shared_community().then(data => {
+    db.shared_community().then((data) => {
       io.emit("shared data", data);
     });
   });
@@ -110,15 +110,15 @@ app.post("/api/send", (req, res, next) => {
     service: "gmail",
     auth: {
       user: EMAIL,
-      pass: EMAIL_PASSWORD
-    }
+      pass: EMAIL_PASSWORD,
+    },
   });
   const mailOptions = {
     from: `${EMAIL}`,
     to: `${email}`,
     subject: `${title} by ${name}`,
     text: `${message}`,
-    replyTo: ``
+    replyTo: ``,
   };
   transporter.sendMail(mailOptions, (err, res) => {
     if (err) {
@@ -137,7 +137,7 @@ app.post("/api/charge", async (req, res) => {
     const { token, final } = req.body;
     const customer = await stripe.customers.create({
       email: token.email,
-      source: token.id
+      source: token.id,
     });
     const charge = await stripe.charges.create({
       amount: final * 100,
@@ -151,9 +151,9 @@ app.post("/api/charge", async (req, res) => {
           line2: token.card.address_line2,
           city: token.card.address_city,
           country: token.card.address_country,
-          postal_code: token.card.address_zip
-        }
-      }
+          postal_code: token.card.address_zip,
+        },
+      },
     });
     console.log("CHARGE:", { charge });
     console.log("CUSTOMER:", { customer });
